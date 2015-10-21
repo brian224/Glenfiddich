@@ -1,0 +1,197 @@
+﻿@import "compass/reset";
+@import "compass";
+
+$main-golden: #ac8447;
+
+body {
+	font : 12px/1.6em '微軟正黑體', Arial, serif;
+}
+
+button {
+	font-family : '微軟正黑體', Arial, serif;
+}
+
+.middleSet {
+	position  : relative;
+	font-size : 0;
+
+	&:before {
+		content        : '';
+		display        : inline-block;
+		height         : 100%;
+		vertical-align : middle;
+	}
+
+	* {
+		display        : inline-block;
+		font-size      : initial;
+		vertical-align : middle;
+	}
+}
+
+.hide-text {
+	white-space : nowrap;
+	text-indent : -99999px;
+	overflow    : hidden;
+}
+
+.logo {
+	background: image-url('logo.png') 0 0 no-repeat;
+	background-size: 100% 100%;
+	width: 187px;
+	height: 53px;
+	position: fixed;
+	top: 13px;
+	left: 20px;
+	z-index: 2;
+}
+
+.menu {
+	@include box-sizing(border-box);
+	@include transition(ease-in-out all 0.3s);
+	padding: 0 72px 0 0;
+	width: 108px;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: 1;
+	text-align: right;
+
+	&:before {
+		@include transition(ease-in-out all 0.3s);
+		content: '';
+		background: #fff;
+		width: 0;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: -1;
+	}
+
+	&.open {
+		width: 100%;
+
+		&:before {
+			width: 100%;
+		}
+
+		.btn-menu {
+			&:before {
+				@include rotate(-45deg);
+				margin-top : 0;
+			}
+	
+			&:after {
+				@include rotate(45deg);
+				margin-top : 0;
+			}
+	
+			.icon {
+				display : none;
+			}
+		}
+	}
+
+	.text {
+		float: right;
+		position: relative;
+		z-index: 1;
+		color: $main-golden;
+		line-height: 80px;
+	}
+
+	.btn-menu {
+		@include box-sizing(border-box);
+		padding: 0;
+		background: transparent;
+		display: block;
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		border: 0;
+		cursor: pointer;
+
+		&:before, &:after, .icon {
+			@include transition(ease-in-out all 0.3s);
+			content       : '';
+			margin        : -1px 0 0 -20px;
+			background    : $main-golden;
+			width         : 40px;
+			height        : 2px;
+			position      : absolute;
+			top           : 50%;
+			left          : 50%;
+			border-radius : 1px;
+		}
+
+		&:before {
+			margin-top : -10px;
+		}
+
+		&:after {
+			margin-top : 8px;
+		}
+	}
+
+	.main-menu {
+		float: right;
+		font-size: 15px;
+		line-height: 80px;
+
+		.list, .icon {
+			margin-right: 20px;
+			float: left;
+		}
+
+		.link {
+			display: block;
+			color: #7a6866;
+			text-decoration: none;
+		}
+	}
+}
+
+.dotnav {
+	position: fixed;
+	top: 50%;
+	left: 28px;
+
+	.dot-list .list {
+		margin:9px 3px ;
+		background: $main-golden;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&.is-curr {
+			margin: 6px 0;
+			background: transparent;
+			border: 3px solid $main-golden;
+		}
+	}
+}
+
+.warning-signs {
+	background: #303030 image-url('warning-signs.png') center center no-repeat;
+	background-size: 854px 40px;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+@-moz-document url-prefix() {
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+}
+
+.ie9 {
+}
