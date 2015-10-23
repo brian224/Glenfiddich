@@ -1,8 +1,12 @@
 var $menu    = $('.menu'),
-	$btnMenu = $('.btn-menu'),
-	$dotnav  = $('.dotnav .list');
+	$sidenav = $('.sidenav'),
+	$btnMenu = $menu.find('.btn-menu'),
+	$dotnav  = $sidenav.find('.dotnav .list'),
+	_sidenav = $sidenav.height();
 
 $(function(){
+	$sidenav.css({'margin-top' : - (_sidenav / 2)});
+
 	$btnMenu.on('click', function(){
 		$menu.toggleClass('open');
 	});
