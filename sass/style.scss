@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	min-height: 700px;
+	min-height: 100%;
 	position: relative;
 	overflow: hidden;
 	font : 12px/1.6em '微軟正黑體', Arial, serif;
@@ -162,15 +162,17 @@ button {
 			float: left;
 		}
 
-		.link {
-			display: block;
+		.btn-sublink, .link {
+			background: transparent;
+			display: inline-block;
+			border: 0;
+			cursor: pointer;
 			color: #7a6866;
 			text-decoration: none;
 		}
 
 		.icon .link {
 			background: image-url('icons.png') 0 0 no-repeat;
-			display: inline-block;
 			width: 23px;
 			height: 23px;
 
@@ -181,18 +183,206 @@ button {
 	}
 }
 
+.l-wrap {
+}
+
 .l-content {
-	.video-wrap, .case-wrap {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	.video-wrap, .case-wrap, .product-wrap {
 		display: none;
 	}
 
-	&.case .case-wrap {
-		background: image-url('case.png') center 104px no-repeat;
-		display: block;
-		width: 100%;
-		height: 1014px;
-		position: relative;
-		text-align: center;
+	&.case {
+		background: #000 image-url('main-bg.png') center top no-repeat;
+
+		&:before {
+			content: '';
+			background: image-url('main-bg-table.png') 0 0 no-repeat;
+			display: block;
+			width: 436px;
+			height: 416px;
+			position: absolute;
+			bottom: 80px;
+			left: 0;
+		}
+
+		.case-wrap {
+			background: image-url('case.png') center 104px no-repeat;
+			display: block;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			text-align: center;
+	
+			.main-title {
+				background: image-url('title.png') 0 0 no-repeat;
+				display: inline-block;
+				width: 314px;
+				height: 73px;
+			}
+	
+			.position-list {
+				font-size: 0;
+				line-height: 0;
+	
+				.location {
+					display: inline-block;
+				}
+			}
+	
+			.btn-location {
+				margin: 0 33px;
+				background: image-url('btn-location-bg.png') 0 0 no-repeat;
+				display: block;
+				width: 130px;
+				height: 125px;
+				border: 0;
+			}
+		}
+
+		.btn-participate {
+			background: #4a3a3a;
+			width: 132px;
+			height: 35px;
+			position: relative;
+			border: 0;
+			cursor: pointer;
+			color: #ff9135;
+			font-size: 15px;
+			letter-spacing: 1px;
+
+			&:after {
+				content: '';
+				display: inline-block;
+				width: 11px;
+				height: 11px;
+				border-right: 1px solid #ff9135;
+				border-bottom: 1px solid #ff9135;
+				transform: rotate(-45deg);
+			}
+		}
+	}
+
+	&.product {
+		@include background-image(linear-gradient(to right, #fff8f4 30%, #ececec 40%));
+
+		.product-wrap {
+			margin-left: -30px;
+			display: block;
+			min-height: 100%;
+			position: absolute;
+			left: 50%;
+
+			.product-info {
+				min-height: 370px;
+				position: relative;
+				z-index: 1;
+			}
+
+			.product-title {
+				padding-left: 86px;
+				position: relative;
+				border-bottom: 1px solid #bb7a4e;
+				color: #bb7a4e;
+				font-size: 25px;
+				line-height: 1.5em;
+
+				.icon-year {
+					position: absolute;
+					top: 0;
+					left: 0;
+					color: #bb7a4e;
+					font-size: 70px;
+					font-weight: bold;
+					line-height: 70px;
+				}
+			}
+
+			.product-content {
+				margin: 6px 0 16px 0;
+				display: block;
+				color: #4a3a3a;
+				font-size: 15px;
+				font-weight: bold;
+				line-height: 1.5em;
+			}
+
+			.product-desc {
+				min-height: 130px;
+				color: #4a3a3a;
+				font-size: 15px;
+				line-height: 26px;
+			}
+
+			.award-list {
+				margin-top: 20px;
+				color: #4a3a3a;
+				font-size: 13px;
+				line-height: 20px;
+			}
+
+			.img-wrap {
+				width: 240px;
+				height: 476px;
+				position: absolute;
+				top: 0;
+				left: -213px;
+				z-index: -1;
+
+				img {
+					display: block;
+					width: 100%;
+				}
+			}
+
+			.sub-menu {
+				position: relative;
+				z-index: 1;
+			}
+
+			.product-menu {
+				margin-top: 30px;
+				font-size: 0;
+				line-height: 0;
+
+				.list {
+					display: inline-block;
+				}
+
+				.btn-product {
+					margin: 0 10px 0 0;
+					background: #f5f2f0;
+					min-width: 88px;
+					height: 20px;
+					position: relative;
+					border: 1px solid #483a39;
+					cursor: pointer;
+
+					&.is-curr {
+						background: #483a39;
+						color: #fff;
+
+						&:before {
+							content: '';
+							margin-left: -6px;
+							position: absolute;
+							top: -9px;
+							left: 50%;
+							border-right: 6px solid transparent;
+							border-bottom: 9px solid #483a39;
+							border-left: 6px solid transparent;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
