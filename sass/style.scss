@@ -275,6 +275,7 @@ button {
 
 		.product-wrap {
 			margin-left: -30px;
+			padding-top: 113px;
 			display: block;
 			min-height: 100%;
 			position: absolute;
@@ -458,6 +459,7 @@ button {
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	z-index: 2;
 
 	&:before {
 		content: '';
