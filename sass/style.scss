@@ -212,20 +212,54 @@ button {
 		}
 
 		.case-wrap {
-			background: image-url('case.png') center 104px no-repeat;
+			@include box-sizing(border-box);
+			margin-top: -229px;
+			padding-top: 90px;
+			background: image-url('case.png') center 0 no-repeat;
 			display: block;
 			width: 100%;
+			height: 458px;
 			position: absolute;
-			top: 0;
-			bottom: 0;
+			top: 50%;
 			left: 0;
+			z-index: 0;
 			text-align: center;
+
+			&:after {
+				content: '';
+				background: image-url('case.png') center -458px no-repeat;
+				display: block;
+				width: 100%;
+				height: 453px;
+				position: absolute;
+				top: 453px;
+				z-index: -1;
+			}
 	
 			.main-title {
 				background: image-url('title.png') 0 0 no-repeat;
 				display: inline-block;
 				width: 314px;
 				height: 73px;
+			}
+
+			.hashtag {
+				margin: 0 auto;
+				background: image-url('hashtag-bg.png') 0 0 no-repeat;
+				display: block;
+				width: 294px;
+				height: 42px;
+				font-size: 18px;
+				letter-spacing: 1px;
+				line-height: 32px;
+			}
+
+			.desc {
+				color: #fff;
+				font-size: 18px;
+				letter-spacing: 1px;
+				line-height: 1.5em;
+				text-align: center;
 			}
 	
 			.position-list {
@@ -239,15 +273,34 @@ button {
 	
 			.btn-location {
 				margin: 0 33px;
+				padding: 0 0 12px 5px;
 				background: image-url('btn-location-bg.png') 0 0 no-repeat;
 				display: block;
 				width: 130px;
 				height: 125px;
+				position: relative;
 				border: 0;
+				cursor: pointer;
+				color: #fff;
+				font-size: 38px;
+				/*font-family: 'Kartika';*/
+				font-family: 'Century Gothic';
+
+				&:before {
+					content: attr(data-area);
+					padding-top: 10px;
+					position: absolute;
+					top: 0;
+					left: 5px;
+					font-size: 15px;
+					font-family: '微軟正黑體';
+					line-height: 1.5em;
+				}
 			}
 		}
 
 		.btn-participate {
+			margin: 10px 0 48px 0;
 			background: #4a3a3a;
 			width: 132px;
 			height: 35px;
@@ -256,6 +309,7 @@ button {
 			cursor: pointer;
 			color: #ff9135;
 			font-size: 15px;
+			letter-spacing: 1px;
 			letter-spacing: 1px;
 
 			&:after {
