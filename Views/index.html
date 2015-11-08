@@ -9,14 +9,14 @@
 <meta property="og:image" content="" />
 <link rel="stylesheet" type="text/css" href="../Content/css/style.css" />
 </head>
-<body>
+<body class="">
 	<h1 class="logo hide-text">格蘭菲迪</h1>
 	<nav class="menu">
 		<button class="btn-menu"><i class="icon"></i></button>
 		<span class="text">MENU</span>
 		<ul class="main-menu">
 			<li class="list"><button class="btn-sublink">活動辦法</button></li>
-			<li class="list"><button class="btn-sublink">精釀酒款</button></li>
+			<li class="list"><button class="btn-sublink" data-wrap="product">精釀酒款</button></li>
 			<li class="list"><button class="btn-sublink">得獎名單</button></li>
 			<li class="list"><button class="btn-sublink">2016私藏經典</button></li>
 			<li class="list"><button class="btn-sublink">1963傳奇經典</button></li>
@@ -27,24 +27,58 @@
 	<div class="l-wrap">
 		<!-- <header class="l-header">
 		</header> -->
-		<div class="l-content product">
-			<div class="video-wrap"></div>
+		<div class="l-content video">
+			<div class="video-wrap">
+				<ul class="video-list">
+					<li class="list"><img src="../content/img/video/cut01/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut02/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut03/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut04/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut05/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut06/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut07/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut08/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut09/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut10/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut11/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut12/cf_001.png" alt=""></li>
+					<li class="list"><img src="../content/img/video/cut13/cf_001.png" alt=""></li>
+				</ul>
+			</div>
 			<div class="case-wrap">
-				<h2 class="main-title hide-text">格蘭菲迪 世界第一單一純麥威士忌</h2>
-				<em class="hashtag">#讓世界為我致敬</em>
-				<p class="desc">你，從哪裡挑戰世界？<br>拍下你的第一，讓世界為你的先鋒精神致敬！</p>
-				<button class="btn-participate">參與方法</button>
+				<div class="trunk-case">
+					<h2 class="main-title hide-text">格蘭菲迪 世界第一單一純麥威士忌</h2>
+					<em class="hashtag">#讓世界為我致敬</em>
+					<p class="desc">你，從哪裡挑戰世界？<br>拍下你的第一，讓世界為你的先鋒精神致敬！</p>
+					<button class="btn-participate">參與方法</button>
+				</div>
 				<ul class="position-list">
-					<li class="location">
-						<button class="btn-location" data-area="從北部 ＞">48%</button>
+					<li class="location north">
+						<button class="btn-location" data-area="從北部 ＞" data-part="left" data-per="48"></button>
 					</li>
-					<li class="location">
-						<button class="btn-location" data-area="從中部 ＞">27%</button>
+					<li class="location middle">
+						<button class="btn-location" data-area="從中部 ＞" data-part="center" data-per="27"></button>
 					</li>
-					<li class="location">
-						<button class="btn-location" data-area="從南部 ＞">25%</button>
+					<li class="location south">
+						<button class="btn-location" data-area="從南部 ＞" data-part="right" data-per="25"></button>
 					</li>
 				</ul>
+				<div class="open-case">
+					<div class="inside-case left-part"></div>
+					<div class="inside-case center-part"></div>
+					<div class="inside-case right-part">
+						<ul class="photo-loop">
+							<li class="list">
+								<a class="link" href="" target="">
+									<figure class="img-wrap">
+										<img src="../content/img/photo/01.png" alt="拿起手機，立即拍照#讓世界為我致敬！">
+										<span class="img-desc">拿起手機，立即拍照#讓世界為我致敬！</span>
+									</figure>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="product-wrap">
 				<div class="product-info">
@@ -58,6 +92,7 @@
 					<ul class="product-menu"></ul>
 				</nav>
 			</div>
+			<span class="hint-scroll"></span>
 		</div>
 		<!-- <div class="lightbox-wrap">
 		</div> -->
@@ -65,6 +100,10 @@
 	<nav class="sidenav">
 		<ul class="dotnav">
 			<li class="list is-curr"></li>
+			<li class="list"></li>
+			<li class="list"></li>
+			<li class="list"></li>
+			<li class="list"></li>
 			<li class="list"></li>
 			<li class="list"></li>
 			<li class="list"></li>
