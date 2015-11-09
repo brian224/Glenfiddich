@@ -19,18 +19,18 @@ var $menu        = $('.menu'),
 	_wSignsHei   = $('.warning-signs').outerHeight(),
 	_loadAPI     = false;
 	_timer       = null,
-	_scrollEvent = false,
-	_now         = 0;
+	_scrollEvent = false;
 
 $(function(){
 	setProd(0);
 	setViewHeight();
 	$sidenav.css({'margin-top' : - (_sidenav / 2)});
 	$btnLocation.each(function(){
-		var _num = parseInt($(this).data('per'), 10),
-			_idx = $(this).parent().index();
+		var _per = $(this).data('per'),
+			_idx = $(this).parent().index(),
+			_now = 0;
 
-		writePer(_idx, _num);
+		writePer(_per, _idx, _now);
 	});
 
 	// 開關menu
@@ -42,16 +42,6 @@ $(function(){
 	$btnSublink.on('click', function(){
 		if ($(this).data('wrap') === 'product') {
 			$lContent.attr('class', 'l-content ' + $(this).data('wrap'));
-		}
-	});
-
-	$dotnav.on('click', function(){
-		if (!$(this).hasClass('is-curr')) {
-			var _videoHei = $videoList.height(),
-				_idx      = $(this).index();
-
-			$(this).addClass('is-curr').siblings().removeClass('is-curr');
-			$lContent.animate({scrollTop: _idx * _videoHei}, 500);
 		}
 	});
 
@@ -82,23 +72,49 @@ $(function(){
 		}
 	});
 
-	$lContent.on('scroll', function(e){
-		// if (_scrollEvent === false) {
-		// 	_scrollEvent = true;
+	// 點擊紅點換cut
+	$dotnav.on('click', function(){
+		if (!$(this).hasClass('is-curr')) {
+			var _videoHei = $videoList.height(),
+				_idx      = $(this).index();
 
-		// 	var _idx       = $('.dotnav .list.is-curr').index(),
-		// 		_videoHei  = $videoList.height(),
-		// 		_scrollTop = $(this).scrollTop();
+			$(this).addClass('is-curr').siblings().removeClass('is-curr');
+			$lContent.animate({scrollTop: _idx * _videoHei}, 500);
+		}
+	});
 
-		// 	$(this).css({'overflow' : 'hidden'});
-		// 	$dotnav.removeClass('is-curr').eq(_idx + 1).addClass('is-curr');
-		// 	$lContent.animate({
-		// 		scrollTop: (Math.ceil(_scrollTop / _videoHei) + _idx) * _videoHei
-		// 	}, 500, function() {
-		// 		_scrollEvent = false;
-		// 		$(this).css({'overflow' : 'auto'});
-		// 	});
-		// }
+	// 用滑鼠滾輪cut
+	$lContent.on('mousewheel', function(e){
+		if (_scrollEvent === false && $(this).hasClass('video')) {
+			_scrollEvent = true;
+
+			var _idx       = $('.dotnav .list.is-curr').index(),
+				_videoHei  = $videoList.height(),
+				_scrollTop = $(this).scrollTop();
+
+			if (e.originalEvent.wheelDelta >= 0 && _idx > 0) {
+				// 向上捲動，且不在第一幕
+				$dotnav.removeClass('is-curr').eq(_idx - 1).addClass('is-curr');
+				$lContent.animate({
+					scrollTop: (_idx - 1) * _videoHei
+				}, 500, function() {
+					_scrollEvent = false;
+				});
+			} else if (e.originalEvent.wheelDelta < 0 && _idx < ($('.dotnav .list').length - 1)){
+				// 向下捲動，且不在最後一幕
+				$dotnav.removeClass('is-curr').eq(_idx + 1).addClass('is-curr');
+				$lContent.animate({
+					scrollTop: (_idx + 1) * _videoHei
+				}, 500, function() {
+					_scrollEvent = false;
+				});
+			} else if (e.originalEvent.wheelDelta < 0 && _idx === ($('.dotnav .list').length - 1)){
+				// 向下捲動，且在最後一幕
+				$(this).attr('class', 'l-content act');
+			} else {
+				_scrollEvent = false;
+			}
+		}
 	});
 
 	// 螢幕縮放保持滿版
@@ -112,6 +128,7 @@ $(function(){
 		}, 100);
 	});
 
+	// 保持滿版
 	function setViewHeight() {
 		var _windowHei = $(window).height(),
 			_idx       = $('.dotnav .list.is-curr').index();
@@ -122,6 +139,7 @@ $(function(){
 		$lContent.animate({scrollTop: _idx * (_windowHei - _wSignsHei)}, 0);
 	}
 
+	// 組合產品的view
 	function setProd(num) {
 		var _str   = '',
 			_liStr = '';
@@ -155,13 +173,15 @@ $(function(){
 		});
 	}
 
-	function writePer(_idx, _num) {
-		$('li.location').eq(_idx).find('.btn-location').text(_num + '%');
+	// 跑北中南的百分比
+	function writePer(_per, _idx, _now) {
+		_now += 1;
 
-		// if (_now < _num) {
-		// 	_now += 1;
-		// }
-
-		// setTimeout('writePer(_idx, _num)', 1000);
+		if (_now <= _per) {
+			setTimeout(function(){
+				$('.location').eq(_idx).find('.btn-location').text(_now + '%');
+				writePer(_per, _idx, _now)
+			}, 50);
+		}
 	}
 });
