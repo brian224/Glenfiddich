@@ -250,10 +250,12 @@ button {
 			overflow    : hidden;
 
 			&.cut01 .os {
+				opacity     : 1;
 				text-indent : -237px;
 			}
 
 			&.cut02 .os {
+				opacity     : 1;
 				text-indent : -250px;
 			}
 
@@ -294,6 +296,7 @@ button {
 				position       : absolute;
 				top            : 50%;
 				left           : 0;
+				opacity        : 0;
 				z-index        : 1;
 				color          : #fff;
 				font-size      : 26px;
@@ -303,6 +306,12 @@ button {
 
 				.highlight {
 					font-size : 32px;
+				}
+
+				&.hasAnimate {
+					-moz-animation : osFade 1s linear forwards;
+					-ms-animation  : osFade 1s linear forwards;
+					animation      : osFade 1s linear forwards;
 				}
 			}
 		}
@@ -322,7 +331,9 @@ button {
 		overflow : hidden;
 
 		&.goScale .instagram-post {
-			animation-play-state : running;
+			-moz-animation-play-state : running;
+			-ms-animation-play-state  : running;
+			animation-play-state      : running;
 		}
 
 		.act-caption {
@@ -383,13 +394,17 @@ button {
 		}
 
 		.instagram-post {
-			background           : #fff;
-			height               : 600px;
-			position             : absolute;
-			border               : 1px solid #d8d8d8;
-			box-shadow           : -15px 20px 10px rgba(84, 61, 36, 0.2);
-			animation            : cameraShot 1s linear forwards;
-			animation-play-state : paused;
+			background                : #fff;
+			height                    : 600px;
+			position                  : absolute;
+			border                    : 1px solid #d8d8d8;
+			box-shadow                : -15px 20px 10px rgba(84, 61, 36, 0.2);
+			-moz-animation            : cameraShot 1s linear forwards;
+			-ms-animation             : cameraShot 1s linear forwards;
+			animation                 : cameraShot 1s linear forwards;
+			-moz-animation-play-state : paused;
+			-ms-animation-play-state  : paused;
+			animation-play-state      : paused;
 		}
 
 		.user-info {
@@ -462,14 +477,16 @@ button {
 		z-index    : 1;
 
 		&:before {
-			content   : '';
-			display   : block;
-			width     : 100%;
-			height    : 480px;
-			position  : absolute;
-			top       : 0;
-			left      : 0;
-			animation : runCaseBg 5s linear forwards infinite;
+			content        : '';
+			display        : block;
+			width          : 100%;
+			height         : 480px;
+			position       : absolute;
+			top            : 0;
+			left           : 0;
+			-moz-animation : runCaseBg 5s linear forwards infinite;
+			-ms-animation  : runCaseBg 5s linear forwards infinite;
+			animation      : runCaseBg 5s linear forwards infinite;
 		}
 
 		&:after {
@@ -485,7 +502,9 @@ button {
 
 		&.left, &.center, &.right {
 			&:before {
-				animation-play-state : paused;
+				-moz-animation-play-state : paused;
+				-ms-animation-play-state  : paused;
+				animation-play-state      : paused;
 			}
 		}
 
@@ -502,6 +521,7 @@ button {
 			.left-part {
 				width        : 700px;
 				border-right : 1px solid #fff;
+				box-shadow   : 0 0 100px rgba(0, 0, 0, 0.5);
 			}
 		}
 
@@ -524,11 +544,16 @@ button {
 				}
 			}
 
+			.btn-location {
+				margin : 0;
+			}
+
 			.center-part {
 				margin-left  : -350px;
 				width        : 700px;
 				border-right : 1px solid #fff;
 				border-left  : 1px solid #fff;
+				box-shadow   : 0 0 100px rgba(0, 0, 0, 0.5);
 			}
 		}
 
@@ -545,6 +570,7 @@ button {
 			.right-part {
 				width       : 700px;
 				border-left : 1px solid #fff;
+				box-shadow  : 0 0 100px rgba(0, 0, 0, 0.5);
 			}
 		}
 
@@ -639,6 +665,7 @@ button {
 			}
 
 			&:after {
+				@include transform(rotate(-45deg));
 				content       : '';
 				display       : block;
 				width         : 9px;
@@ -648,7 +675,6 @@ button {
 				left          : 50px;
 				border-right  : 2px solid #fff;
 				border-bottom : 2px solid #fff;
-				transform     : rotate(-45deg);
 			}
 
 			@for $i from 1 through 10 {
@@ -660,7 +686,7 @@ button {
 
 		.inside-case {
 			@include transition(ease-in-out all 0.3s);
-			background : rgba(0,0,0,0.7) image-url('case-open.png') 180px bottom no-repeat;
+			background : rgba(0,0,0,0.7) image-url('case-open.png') 120px 60px no-repeat;
 			display    : block;
 			width      : 0;
 			height     : 100%;
@@ -669,16 +695,60 @@ button {
 			left       : 0;
 			overflow   : hidden;
 			z-index    : 1;
+
+			&.center-part {
+				background-position : center 60px;
+				left                : 50%;
+			}
+
+			&.right-part {
+				background-position : -2020px 60px;
+				left                : auto;
+				right               : 0;
+
+				.btn-more {
+					left  : 20px;
+					right : auto;
+				}
+			}
+		}
+
+		.btn-more {
+			margin-top      : -18px;
+			background      : #4a3a3a;
+			width           : 132px;
+			height          : 35px;
+			position        : absolute;
+			top             : 50%;
+			right           : 27px;
+			z-index         : 1;
+			color           : #ff9135;
+			font-size       : 15px;
+			letter-spacing  : 1px;
+			line-height     : 35px;
+			text-align      : center;
+			text-decoration : none;
+
+			&:after {
+				@include transform(rotate(-45deg));
+				content       : '';
+				display       : inline-block;
+				width         : 11px;
+				height        : 11px;
+				border-right  : 1px solid #ff9135;
+				border-bottom : 1px solid #ff9135;
+			}
 		}
 
 		.photo-loop {
-			margin-top : -188px;
+			margin-top : 188px;
 			width      : 100%;
 			position   : absolute;
-			top        : 50%;
+			top        : 0;
 			text-align : center;
 
 			.list {
+				@include transition(ease-in-out all 0.3s);
 				margin     : 0 auto 20px auto;
 				background : #fff;
 				display    : block;
@@ -699,7 +769,8 @@ button {
 				}
 
 				.img-info {
-					display : block;
+					padding : 8px 0 10px 12px;
+					height  : auto;
 				}
 			}
 
@@ -711,6 +782,7 @@ button {
 				overflow : hidden;
 
 				.img-wrap {
+					@include transition(ease-in-out all 0.3s);
 					margin-left : -101px;
 					display     : block;
 					width       : 360px;
@@ -725,8 +797,11 @@ button {
 			}
 
 			.img-info {
-				padding    : 8px 0 10px 12px;
-				display    : none;
+				@include transition(ease-in-out all 0.3s);
+				@include box-sizing(border-box);
+				display    : block;
+				height     : 0;
+				overflow   : hidden;
 				text-align : left;
 
 				.user-link {
@@ -760,17 +835,6 @@ button {
 				}
 			}
 		}
-
-		.center-part {
-			background-position : center bottom;
-			left                : 50%;
-		}
-
-		.right-part {
-			background-position : -140px bottom;
-			left                : auto;
-			right               : 0;
-		}
 	}
 
 	.product-wrap {
@@ -795,12 +859,13 @@ button {
 		}
 
 		.product-title {
-			padding-left  : 86px;
+			padding       : 5px 0 10px 86px;
 			position      : relative;
 			border-bottom : 1px solid $text-golden;
 			color         : $text-golden;
 			font-size     : 25px;
-			line-height   : 1.5em;
+			font-family   : 'GFModern', '微軟正黑體';
+			line-height   : 30px;
 
 			.icon-year {
 				position    : absolute;
@@ -908,16 +973,15 @@ button {
 		color          : #ff9135;
 		font-size      : 15px;
 		letter-spacing : 1px;
-		letter-spacing : 1px;
 
 		&:after {
+			@include transform(rotate(-45deg));
 			content       : '';
 			display       : inline-block;
 			width         : 11px;
 			height        : 11px;
 			border-right  : 1px solid #ff9135;
 			border-bottom : 1px solid #ff9135;
-			transform     : rotate(-45deg);
 		}
 	}
 }
@@ -951,6 +1015,7 @@ button {
 		cursor     : pointer;
 
 		&:before, &:after {
+			@include transform(rotate(-45deg));
 			content    : '';
 			margin     : -1px 0 0 -35px;
 			background : #fff;
@@ -959,11 +1024,10 @@ button {
 			position   : absolute;
 			top        : 50%;
 			left       : 50%;
-			transform  : rotate(-45deg);
 		}
 
 		&:after {
-			transform : rotate(45deg);
+			@include transform(rotate(45deg));
 		}
 	}
 
@@ -999,6 +1063,7 @@ button {
 		}
 
 		&:after {
+			@include transform(rotate(-45deg));
 			content       : '';
 			margin-top    : -8px;
 			display       : block;
@@ -1009,7 +1074,6 @@ button {
 			right         : 18px;
 			border-right  : 1px solid #fff;
 			border-bottom : 1px solid #fff;
-			transform     : rotate(-45deg);
 		}
 
 		.highlight {
@@ -1132,20 +1196,171 @@ button {
 	}
 }
 
-@keyframes cameraShot {
+@-ms-keyframes osFade {
 	0% {
-		width     : 100%;
-		bottom    : -80px;
-		right     : 0;
-		transform : scale(2,2);
+		opacity : 0;
 	}
 
 	100% {
-		width     : 460px;
-		bottom    : -44px;
-		right     : 50%;
-		transform : rotate(-10deg);
+		opacity : 1;
 	}
+}
+
+@-webkit-keyframes osFade {
+	0% {
+		opacity : 0;
+	}
+
+	100% {
+		opacity : 1;
+	}
+}
+
+@-moz-keyframes osFade {
+	0% {
+		opacity : 0;
+	}
+
+	100% {
+		opacity : 1;
+	}
+}
+
+@keyframes osFade {
+	0% {
+		opacity : 0;
+	}
+
+	100% {
+		opacity : 1;
+	}
+}
+
+@-ms-keyframes cameraShot {
+	0% {
+		@include transform(scale(2,2));
+		width  : 100%;
+		bottom : -80px;
+		right  : 0;
+	}
+
+	100% {
+		@include transform(rotate(-10deg));
+		width  : 460px;
+		bottom : -44px;
+		right  : 50%;
+	}
+}
+
+@-webkit-keyframes cameraShot {
+	0% {
+		@include transform(scale(2,2));
+		width  : 100%;
+		bottom : -80px;
+		right  : 0;
+	}
+
+	100% {
+		@include transform(rotate(-10deg));
+		width  : 460px;
+		bottom : -44px;
+		right  : 50%;
+	}
+}
+
+@-moz-keyframes cameraShot {
+	0% {
+		@include transform(scale(2,2));
+		width  : 100%;
+		bottom : -80px;
+		right  : 0;
+	}
+
+	100% {
+		@include transform(rotate(-10deg));
+		width  : 460px;
+		bottom : -44px;
+		right  : 50%;
+	}
+}
+
+@keyframes cameraShot {
+	0% {
+		@include transform(scale(2,2));
+		width  : 100%;
+		bottom : -80px;
+		right  : 0;
+	}
+
+	100% {
+		@include transform(rotate(-10deg));
+		width  : 460px;
+		bottom : -44px;
+		right  : 50%;
+	}
+}
+
+@-webkit-keyframes runCaseBg {
+	0% { background   : image-url('case-bg/gf_001.jpg') center top no-repeat;}
+	6% { background   : image-url('case-bg/gf_002.jpg') center top no-repeat;}
+	12% { background  : image-url('case-bg/gf_003.jpg') center top no-repeat;}
+	18% { background  : image-url('case-bg/gf_004.jpg') center top no-repeat;}
+	24% { background  : image-url('case-bg/gf_005.jpg') center top no-repeat;}
+	30% { background  : image-url('case-bg/gf_006.jpg') center top no-repeat;}
+	36% { background  : image-url('case-bg/gf_007.jpg') center top no-repeat;}
+	42% { background  : image-url('case-bg/gf_008.jpg') center top no-repeat;}
+	48% { background  : image-url('case-bg/gf_009.jpg') center top no-repeat;}
+	54% { background  : image-url('case-bg/gf_010.jpg') center top no-repeat;}
+	60% { background  : image-url('case-bg/gf_011.jpg') center top no-repeat;}
+	66% { background  : image-url('case-bg/gf_012.jpg') center top no-repeat;}
+	72% { background  : image-url('case-bg/gf_013.jpg') center top no-repeat;}
+	78% { background  : image-url('case-bg/gf_014.jpg') center top no-repeat;}
+	84% { background  : image-url('case-bg/gf_015.jpg') center top no-repeat;}
+	90% { background  : image-url('case-bg/gf_016.jpg') center top no-repeat;}
+	95% { background  : image-url('case-bg/gf_017.jpg') center top no-repeat;}
+	100% { background : image-url('case-bg/gf_001.jpg') center top no-repeat;}
+}
+
+@-ms-keyframes runCaseBg {
+	0% { background   : image-url('case-bg/gf_001.jpg') center top no-repeat;}
+	6% { background   : image-url('case-bg/gf_002.jpg') center top no-repeat;}
+	12% { background  : image-url('case-bg/gf_003.jpg') center top no-repeat;}
+	18% { background  : image-url('case-bg/gf_004.jpg') center top no-repeat;}
+	24% { background  : image-url('case-bg/gf_005.jpg') center top no-repeat;}
+	30% { background  : image-url('case-bg/gf_006.jpg') center top no-repeat;}
+	36% { background  : image-url('case-bg/gf_007.jpg') center top no-repeat;}
+	42% { background  : image-url('case-bg/gf_008.jpg') center top no-repeat;}
+	48% { background  : image-url('case-bg/gf_009.jpg') center top no-repeat;}
+	54% { background  : image-url('case-bg/gf_010.jpg') center top no-repeat;}
+	60% { background  : image-url('case-bg/gf_011.jpg') center top no-repeat;}
+	66% { background  : image-url('case-bg/gf_012.jpg') center top no-repeat;}
+	72% { background  : image-url('case-bg/gf_013.jpg') center top no-repeat;}
+	78% { background  : image-url('case-bg/gf_014.jpg') center top no-repeat;}
+	84% { background  : image-url('case-bg/gf_015.jpg') center top no-repeat;}
+	90% { background  : image-url('case-bg/gf_016.jpg') center top no-repeat;}
+	95% { background  : image-url('case-bg/gf_017.jpg') center top no-repeat;}
+	100% { background : image-url('case-bg/gf_001.jpg') center top no-repeat;}
+}
+
+@-moz-keyframes runCaseBg {
+	0% { background   : image-url('case-bg/gf_001.jpg') center top no-repeat;}
+	6% { background   : image-url('case-bg/gf_002.jpg') center top no-repeat;}
+	12% { background  : image-url('case-bg/gf_003.jpg') center top no-repeat;}
+	18% { background  : image-url('case-bg/gf_004.jpg') center top no-repeat;}
+	24% { background  : image-url('case-bg/gf_005.jpg') center top no-repeat;}
+	30% { background  : image-url('case-bg/gf_006.jpg') center top no-repeat;}
+	36% { background  : image-url('case-bg/gf_007.jpg') center top no-repeat;}
+	42% { background  : image-url('case-bg/gf_008.jpg') center top no-repeat;}
+	48% { background  : image-url('case-bg/gf_009.jpg') center top no-repeat;}
+	54% { background  : image-url('case-bg/gf_010.jpg') center top no-repeat;}
+	60% { background  : image-url('case-bg/gf_011.jpg') center top no-repeat;}
+	66% { background  : image-url('case-bg/gf_012.jpg') center top no-repeat;}
+	72% { background  : image-url('case-bg/gf_013.jpg') center top no-repeat;}
+	78% { background  : image-url('case-bg/gf_014.jpg') center top no-repeat;}
+	84% { background  : image-url('case-bg/gf_015.jpg') center top no-repeat;}
+	90% { background  : image-url('case-bg/gf_016.jpg') center top no-repeat;}
+	95% { background  : image-url('case-bg/gf_017.jpg') center top no-repeat;}
+	100% { background : image-url('case-bg/gf_001.jpg') center top no-repeat;}
 }
 
 @keyframes runCaseBg {

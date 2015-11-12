@@ -11,6 +11,7 @@ var $menu        = $('.menu'),
 	$btnMenu     = $menu.find('.btn-menu'),
 	$videoList   = $videoWrap.find('.list'),
 	$btnLocation = $caseWrap.find('.btn-location'),
+	$photoLoop   = $caseWrap.find('.photo-loop'),
 	$productList = $productWrap.find('.product-list'),
 	$productMenu = $productWrap.find('.product-menu'),
 	$dotnav      = $sidenav.find('.dotnav'),
@@ -20,7 +21,8 @@ var $menu        = $('.menu'),
 	_timer       = null,
 	_perEvent    = false, // 是否跑過百分比的數字
 	_scrollEvent = false, // 是否停止滑鼠滾輪事件
-	_lock        = false,
+	_lock        = false, // 是否為動畫跑完後自動進到下一cut的
+	_speed       = 500,
 	_nowCut      = 1;
 
 $(function(){
@@ -95,8 +97,16 @@ $(function(){
 			_nowCut = 1;
 			_lock = false;
 			$(this).addClass('is-curr').siblings().removeClass('is-curr');
-			$lContent.animate({scrollTop: _idx * _videoHei}, 500);
+			$lContent.animate({
+				scrollTop : _idx * _videoHei
+			}, _speed);
 
+			// 如果是進拍立得那一cut 加跑拍立得動畫
+			if (_idx === $dotnav.find('.list').length - 2) {
+				$('.act-wrap').addClass('goScale');
+			}
+
+			// 如果是最後一cut 隱藏scroll提示 反之則顯示scroll提示
 			if (_idx === $dotnav.find('.list').length - 1) {
 				$hintScroll.addClass('hide');
 			} else {
@@ -106,8 +116,8 @@ $(function(){
 	});
 
 	// 用滑鼠滾輪cut
-	$lContent.on('mousewheel', function(e){
-		if (_scrollEvent === false) {
+	$lContent.on('mousewheel DOMMouseScroll', function(e){
+		if (_scrollEvent === false && !$('body').hasClass('add-blur')) {
 			_nowCut = 1;
 			_scrollEvent = true;
 
@@ -119,8 +129,8 @@ $(function(){
 				// 向上捲動，且不在第一幕
 				$dotnav.find('.list').removeClass('is-curr').eq(_idx - 1).addClass('is-curr');
 				$lContent.animate({
-					scrollTop: (_idx - 1) * _videoHei
-				}, 500, function() {
+					scrollTop : (_idx - 1) * _videoHei
+				}, _speed, function() {
 					// 如果是離開最後一cut 則顯示scroll提示
 					if ($hintScroll.hasClass('hide')) {
 						$hintScroll.removeClass('hide');
@@ -131,6 +141,7 @@ $(function(){
 			} else if (e.originalEvent.wheelDelta < -10 && _idx < ($('.dotnav .list').length - 1)){
 				// 向下捲動，且不在最後一幕
 				if (_lock === true) {
+					// 是由動畫完成而自動進下一cut的 所以滑鼠事件為播放影片
 					_lock = false;
 
 					var _newIdx = $('.dotnav .list.is-curr').index(),
@@ -140,8 +151,8 @@ $(function(){
 				} else {
 					$dotnav.find('.list').removeClass('is-curr').eq(_idx + 1).addClass('is-curr');
 					$lContent.animate({
-						scrollTop: (_idx + 1) * _videoHei
-					}, 500, function() {
+						scrollTop : (_idx + 1) * _videoHei
+					}, _speed, function() {
 						// 如果是最後一cut 隱藏scroll提示
 						if ($('.dotnav .list.is-curr').index() + 1 === $('.dotnav .list').length) {
 							$hintScroll.addClass('hide');
@@ -157,6 +168,7 @@ $(function(){
 		}
 	});
 
+	// 畫面scroll時
 	$lContent.on('scroll', function(){
 		// 檢查到哪一cut影片以供執行動畫
 		$videoList.each(function(){
@@ -187,6 +199,21 @@ $(function(){
 		if ($('body').hasClass('add-blur')) {
 			return false;
 		}
+	});
+
+	// 點擊箱子裡的照片
+	$photoLoop.each(function(){
+		$(this).on('click', '.list', function(){
+			if (!$(this).hasClass('is-curr')) {
+				var _caseWrapHei = $caseWrap.height(),
+					_idx         = $(this).index();
+
+				$(this).addClass('is-curr').siblings().removeClass('is-curr');
+				$(this).parent().animate({
+					top : _idx * -188 // 這個'188'應該要是讀取API並組版之後 取得.is-curr的高度除以2
+				}, _speed);
+			}
+		});
 	});
 
 	// 螢幕縮放保持滿版
@@ -243,6 +270,12 @@ $(function(){
 			$img    = $nowCut.find('img'),
 			_amount = $nowCut.data('amount');
 
+		_scrollEvent = true;
+		// 3~7cut文字加動畫
+		if (cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') {
+			$nowCut.find('.os').addClass('hasAnimate');
+		}
+
 		// 判斷是否跑完了
 		if (_nowCut < _amount && _lock === false) {
 			setTimeout(function(){
@@ -271,7 +304,8 @@ $(function(){
 					$('.act-wrap').addClass('goScale');
 					_lock = false;
 				}
-				// 還原前一cut的圖片 回到gf_001.jpg
+				// 還原前一cut的文字 & 圖片 回到gf_001.jpg
+				$nowCut.find('.os').removeClass('hasAnimate');
 				$img.attr('src', '../content/img/video/' + cut + '/gf_001.jpg');
 				_scrollEvent = false;
 			});
