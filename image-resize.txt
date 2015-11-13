@@ -1,0 +1,40 @@
+var _resizeImg       = jQuery('.image'),
+
+// background-image Resize
+function ResizeImgFunction() {
+    _browserWidth  = jQuery(window).width(),
+    _browserHeight = jQuery(window).height();
+
+    for (var i = 0 , _resizeImgLen = _resizeImg.length ; i < _resizeImgLen ; i ++) {
+        _resizeImgWidth  = jQuery('img' , _resizeImg.eq(i)).width(),
+        _resizeImgHeight = jQuery('img' , _resizeImg.eq(i)).height();
+
+        jQuery('img' , _resizeImg.eq(i)).removeAttr('style');
+
+        if ( ( _browserHeight / _browserWidth ) > ( _resizeImgHeight / _resizeImgWidth ) ) {
+            jQuery('img' , _resizeImg.eq(i)).css({
+                'width'  : parseInt(((_browserHeight / _resizeImgHeight) * _resizeImgWidth) , 10)  + 'px',
+                'height' : _browserHeight + 'px'
+            });
+        } else {
+            jQuery('img' , _resizeImg.eq(i)).css({
+                'width'  : _browserWidth + 'px',
+                'height' : parseInt(((_browserWidth / _resizeImgWidth) * _resizeImgHeight) , 10) + 'px'
+            });
+        }
+
+        if ( _resizeImg.eq(i).data('direction') === 'bottom' ) {
+            jQuery('img' , _resizeImg.eq(i)).css({
+                'bottom' : 0,
+                'left'   : parseInt(((_browserWidth - jQuery('img' , _resizeImg.eq(i)).width()) / 2) , 10) + 'px'
+            }); 
+        } else if ( _resizeImg.eq(i).data('direction') === 'top' ) {
+            jQuery('img' , _resizeImg.eq(i)).css({
+                'top'  : parseInt(((_browserHeight - jQuery('img' , _resizeImg.eq(i)).height()) / 2) , 10) + 'px',
+                'left' : parseInt(((_browserWidth - jQuery('img' , _resizeImg.eq(i)).width()) / 2) , 10) + 'px'
+            });
+        }
+
+        
+    }
+}
