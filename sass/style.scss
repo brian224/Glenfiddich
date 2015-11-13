@@ -348,6 +348,7 @@ button {
 		.step {
 			margin       : 30px 0 0 45px;
 			padding-left : 108px;
+			display      : block;
 			height       : 90px;
 			position     : relative;
 			color        : #4a3a3a;
@@ -509,13 +510,8 @@ button {
 		}
 
 		&.left {
-			.position-list {
-				left       : 700px;
-				text-align : left;
-
-				.north {
-					display : none;
-				}
+			.position-list .north {
+				display : none;
 			}
 
 			.left-part {
@@ -527,20 +523,16 @@ button {
 
 		&.center {
 			.position-list {
-				.north {
-					margin-left : -140px;
-					position    : absolute;
-					left        : 20%;
+				.location.north {
+					margin-left : -500px;
 				}
 
-				.middle {
+				.location.middle {
 					display : none;
 				}
 
-				.south {
-					margin-right : -140px;
-					position     : absolute;
-					right        : 20%;
+				.location.south {
+					margin-right : -500px;
 				}
 			}
 
@@ -558,13 +550,8 @@ button {
 		}
 
 		&.right {
-			.position-list {
-				right      : 700px;
-				text-align : right;
-
-				.south {
-					display : none;
-				}
+			.position-list .south {
+				display : none;
 			}
 
 			.right-part {
@@ -635,7 +622,21 @@ button {
 			text-align  : center;
 
 			.location {
-				display : inline-block;
+				@include transition(ease-in-out all 0.3s);
+				margin-left : -98px;
+				display     : inline-block;
+				position    : absolute;
+				left        : 50%;
+
+				&.north {
+					margin-left : -294px;
+				}
+
+				&.south {
+					margin-right : -294px;
+					left         : auto;
+					right        : 50%;
+				}
 			}
 		}
 
@@ -685,6 +686,7 @@ button {
 		}
 
 		.inside-case {
+			@include box-sizing(border-box);
 			@include transition(ease-in-out all 0.3s);
 			background : rgba(0,0,0,0.7) image-url('case-open.png') 120px 60px no-repeat;
 			display    : block;
@@ -692,9 +694,13 @@ button {
 			height     : 100%;
 			position   : absolute;
 			top        : 0;
-			left       : 0;
+			right      : 50%;
 			overflow   : hidden;
 			z-index    : 1;
+
+			&.left-part {
+				margin-right : 196px;
+			}
 
 			&.center-part {
 				background-position : center 60px;
@@ -702,9 +708,10 @@ button {
 			}
 
 			&.right-part {
-				background-position : -2020px 60px;
-				left                : auto;
-				right               : 0;
+				margin-left         : 196px;
+				background-position : -620px 60px;
+				left                : 50%;
+				right               : auto;
 
 				.btn-more {
 					left  : 20px;
@@ -790,9 +797,10 @@ button {
 				}
 
 				img {
-					margin  : 0 auto;
-					display : block;
-					height  : 100%;
+					margin     : 0 auto;
+					display    : block;
+					max-width  : 100%;
+					max-height : 100%;
 				}
 			}
 
@@ -804,7 +812,7 @@ button {
 				overflow   : hidden;
 				text-align : left;
 
-				.user-link {
+				.user-info {
 					padding-left    : 28px;
 					display         : inline-block;
 					position        : relative;
@@ -826,12 +834,15 @@ button {
 					}
 				}
 
-				.img-desc {
-					margin-top  : 5px;
-					display     : block;
-					color       : #717171;
-					font-size   : 15px;
-					line-height : 1.5em;
+				.img-desc, .img-hashtag {
+					margin-top    : 5px;
+					display       : block;
+					overflow      : hidden;
+					color         : #717171;
+					font-size     : 15px;
+					line-height   : 1.5em;
+					text-overflow : ellipsis;
+					white-space   : nowrap;
 				}
 			}
 		}
@@ -1031,7 +1042,7 @@ button {
 		}
 	}
 
-	.video-wrap {
+	.video-frame {
 		margin  : 80px auto 0 auto;
 		display : block;
 		width   : 962px;

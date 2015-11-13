@@ -4,7 +4,7 @@ var $menu        = $('.menu'),
 	$hintScroll  = $('.hint-scroll'),
 	$lContent    = $('.l-content'),
 	$btnClose    = $lBoxWrap.find('.btn-close'),
-	$tvc         = $lBoxWrap.find('#tvc'),
+	$videoFrame  = $lBoxWrap.find('.video-frame'),
 	$videoWrap   = $lContent.find('.video-wrap'),
 	$caseWrap    = $lContent.find('.case-wrap'),
 	$productWrap = $lContent.find('.product-wrap'),
@@ -21,15 +21,13 @@ var $menu        = $('.menu'),
 	_timer       = null,
 	_perEvent    = false, // 是否跑過百分比的數字
 	_scrollEvent = false, // 是否停止滑鼠滾輪事件
-	_lock        = false, // 是否為動畫跑完後自動進到下一cut的
+	_lock        = true, // 是否為動畫跑完後自動進到下一cut的 (true = 目前設定為不自動播放)
 	_speed       = 500,
 	_nowCut      = 1;
 
 $(function(){
-	// setProd();
 	setViewHeight();
 	setDotNav();
-	runAnimation('cut01');
 
 	// 開關menu
 	$btnMenu.on('click', function(){
@@ -46,7 +44,7 @@ $(function(){
 	$('body').off('click').on('click', function(e){
 		e.stopPropagation();
 
-		if (!$(e.target).is('.inside-case, .inside-case *, .menu, .menu *, .btn-location') && $caseWrap.attr('class') !== 'case-wrap') {
+		if (!$(e.target).is('.inside-case, .inside-case *, .btn-location') && $caseWrap.attr('class') !== 'case-wrap') {
 			$('body').removeClass('add-blur');
 			$caseWrap.removeClass('left center right');
 		}
@@ -62,19 +60,7 @@ $(function(){
 	// 關閉lightbox 並暫停影片
 	$btnClose.on('click', function(){
 		$lBoxWrap.removeClass('show');
-		$tvc.removeClass('playing');
-		$tvc[0].pause();
-	});
-
-	// 點擊預覽圖 播放/暫停 影片
-	$tvc.on('click', function(){
-		if (!$(this).hasClass('playing')) {
-			$(this).addClass('playing');
-			$tvc[0].play();
-		} else {
-			$(this).removeClass('playing');
-			$tvc[0].pause();
-		}
+		$videoFrame.attr('src', $videoFrame.attr('src'));
 	});
 
 	// 切換產品
@@ -116,7 +102,7 @@ $(function(){
 	});
 
 	// 用滑鼠滾輪cut
-	$lContent.on('mousewheel DOMMouseScroll', function(e){
+	$lContent.on('mousewheel DOMMouseScroll', function(e, delta){
 		if (_scrollEvent === false && !$('body').hasClass('add-blur')) {
 			_nowCut = 1;
 			_scrollEvent = true;
@@ -125,7 +111,7 @@ $(function(){
 				_videoHei  = $videoList.height(),
 				_scrollTop = $(this).scrollTop();
 
-			if (e.originalEvent.wheelDelta >= 10 && _idx > 0) {
+			if (delta > 0 && _idx > 0) {
 				// 向上捲動，且不在第一幕
 				$dotnav.find('.list').removeClass('is-curr').eq(_idx - 1).addClass('is-curr');
 				$lContent.animate({
@@ -135,10 +121,10 @@ $(function(){
 					if ($hintScroll.hasClass('hide')) {
 						$hintScroll.removeClass('hide');
 					}
-					_lock = false;
+					_lock = true;
 					_scrollEvent = false;
 				});
-			} else if (e.originalEvent.wheelDelta < -10 && _idx < ($('.dotnav .list').length - 1)){
+			} else if (delta < 0 && _idx < ($('.dotnav .list').length - 1)){
 				// 向下捲動，且不在最後一幕
 				if (_lock === true) {
 					// 是由動畫完成而自動進下一cut的 所以滑鼠事件為播放影片
@@ -175,6 +161,10 @@ $(function(){
 			if ($(this).offset().top === 0 && _lock === false) {
 				_nowCut = 1;
 				runAnimation($(this).attr('class').split('list ')[1]);
+			} else {
+				// 將圖片與文字還原
+				$(this).find('.os').removeClass('hasAnimate');
+				$(this).find('img').attr('src', '../content/img/video/' + $(this).attr('class').split('list ')[1] + '/gf_001.jpg');
 			}
 		});
 
@@ -272,7 +262,7 @@ $(function(){
 
 		_scrollEvent = true;
 		// 3~7cut文字加動畫
-		if (cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') {
+		if ((cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') && _nowCut === 2 && _lock === false) {
 			$nowCut.find('.os').addClass('hasAnimate');
 		}
 
@@ -288,72 +278,10 @@ $(function(){
 				runAnimation(cut);
 			}, 100);
 		} else {
-			// 跑完了 進下一cut
-			var _idx       = $('.dotnav .list.is-curr').index(),
-				_dotLen    = $('.dotnav .list').length,
-				_videoHei  = $videoList.height(),
-				_scrollTop = $(this).scrollTop();
-
-			_lock = true;
-			$dotnav.find('.list').removeClass('is-curr').eq(_idx + 1).addClass('is-curr');
-			$lContent.animate({
-				scrollTop: (_idx + 1) * _videoHei
-			}, 0, function() {
-				// 如果是進拍立得那一cut 加跑拍立得動畫
-				if (_idx + 1 === _dotLen - 2) {
-					$('.act-wrap').addClass('goScale');
-					_lock = false;
-				}
-				// 還原前一cut的文字 & 圖片 回到gf_001.jpg
-				$nowCut.find('.os').removeClass('hasAnimate');
-				$img.attr('src', '../content/img/video/' + cut + '/gf_001.jpg');
-				_scrollEvent = false;
-			});
+			// 跑完了 解鎖換cut事件
+			_scrollEvent = false;
 		}
 	}
-
-	// 組合產品的view
-	// function setProd(num) {
-	// 	var _liStr = '',
-	// 		_view  = [];
-
-	// 	$.getJSON('../Scripts/api/products.json' , function(data){
-	// 		$.each(data, function(index, value){
-	// 			var _str = prodView(value);
-
-	// 			_liStr += '<li class="list"><button class="btn-product">' + data[index].year + ' YEAR OLD</button></li>';
-	// 			_view.push(_str);
-	// 		});
-	// 	}).done(function() {
-	// 		$productList.html(_view);
-	// 		$productMenu.html(_liStr);
-	// 		$productList.find('.product-info').eq(0).addClass('is-curr');
-	// 		$('.btn-product').eq(0).addClass('is-curr');
-	// 	});
-	// }
-
-	// 單一個產品view
-	// function prodView(value) {
-	// 	return [
-	// 		'<li class="product-info">',
-	// 			'<h2 class="product-title"><i class="icon-year">' , value.year , '</i>格蘭菲迪<br><i class="year">' , value.year , '</i>年單一麥芽威士忌</h2>',
-	// 			'<span class="product-content">容量 700 ml　ABV 40%</span>',
-	// 			'<p class="product-desc">' , value.desc , '</p>',
-	// 			'<ul class="award-list">' , awardView(value) , '</ul>',
-	// 			'<span class="img-wrap"><img src="../Content/img/' , value.photo , '" alt="格蘭菲迪' , value.year , '年單一麥芽威士忌" title="格蘭菲迪' , value.year , '年單一麥芽威士忌"></span>',
-	// 		'</li>'
-	// 	].join('');
-	// }
-
-	// 每個產品獲得的獎項
-	// function awardView(value) {
-	// 	var _str = '';
-
-	// 	for (var i = 0; i < value.award.length; i++) {
-	// 		_str += '<li class="list">' + value.award[i] + '</li>';
-	// 	}
-	// 	return _str;
-	// }
 
 	// 跑北中南的百分比
 	function writePer(_per, _idx, _now) {
