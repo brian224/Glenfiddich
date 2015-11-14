@@ -510,8 +510,21 @@ button {
 		}
 
 		&.left {
-			.position-list .north {
-				display : none;
+			.position-list {
+				width : auto;
+				left  : 700px;
+
+				.location.north {
+					display : none;
+				}
+
+				.location.middle {
+					margin-left : 0;
+				}
+
+				.location.south {
+					margin-right : -392px;
+				}
 			}
 
 			.left-part {
@@ -550,8 +563,21 @@ button {
 		}
 
 		&.right {
-			.position-list .south {
-				display : none;
+			.position-list {
+				width : auto;
+				right : 700px;
+
+				.location.north {
+					margin-left : -392px;
+				}
+
+				.location.middle {
+					margin-left : -196px;
+				}
+
+				.location.south {
+					display : none;
+				}
 			}
 
 			.right-part {
@@ -694,13 +720,9 @@ button {
 			height     : 100%;
 			position   : absolute;
 			top        : 0;
-			right      : 50%;
+			left       : 0;
 			overflow   : hidden;
 			z-index    : 1;
-
-			&.left-part {
-				margin-right : 196px;
-			}
 
 			&.center-part {
 				background-position : center 60px;
@@ -708,10 +730,9 @@ button {
 			}
 
 			&.right-part {
-				margin-left         : 196px;
 				background-position : -620px 60px;
-				left                : 50%;
-				right               : auto;
+				left                : auto;
+				right               : 0;
 
 				.btn-more {
 					left  : 20px;
@@ -1398,5 +1419,56 @@ button {
 @-moz-document url-prefix() {
 }
 
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media (min-width: 1400px) {
+	.l-content .case-wrap {
+		&.left {
+			.position-list {
+				width : 100%;
+				left  : 0;
+
+				.location.middle {
+					margin-left : -98px;
+				}
+
+				.location.south {
+					margin-right : -294px;
+					margin-left  : 0;
+					right        : 50%;
+				}
+			}
+		}
+
+		&.right {
+			.position-list {
+				width : 100%;
+				left  : 0;
+
+				.location.north {
+				    margin-left : -294px;
+				}
+
+				.location.middle {
+					margin-left : -98px;
+				}
+			}
+		}
+
+		.inside-case {
+			&.left-part {
+				margin-right : 196px;
+				left         : auto;
+				right        : 50%;
+			}
+
+			&.center-part {
+				left : 50%;
+			}
+
+			&.right-part {
+				margin-left : 196px;
+				left        : 50%;
+				right       : auto;
+			}
+		}
+	}
 }
