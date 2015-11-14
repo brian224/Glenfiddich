@@ -22,8 +22,8 @@ var $menu        = $('.menu'),
 	_perEvent    = false, // 是否跑過百分比的數字
 	_scrollEvent = false, // 是否停止滑鼠滾輪事件
 	_lock        = true, // 是否為動畫跑完後自動進到下一cut的 (true = 目前設定為不自動播放)
-	_speed       = 500,
-	_nowCut      = 1;
+	_speed       = 500, // 動畫速度
+	_nowCut      = 0;
 
 $(function(){
 	setViewHeight();
@@ -80,17 +80,12 @@ $(function(){
 			var _videoHei = $videoList.height(),
 				_idx      = $(this).index();
 
-			_nowCut = 1;
+			_nowCut = 0;
 			_lock = false;
 			$(this).addClass('is-curr').siblings().removeClass('is-curr');
 			$lContent.animate({
 				scrollTop : _idx * _videoHei
 			}, _speed);
-
-			// 如果是進拍立得那一cut 加跑拍立得動畫
-			if (_idx === $dotnav.find('.list').length - 2) {
-				$('.act-wrap').addClass('goScale');
-			}
 
 			// 如果是最後一cut 隱藏scroll提示 反之則顯示scroll提示
 			if (_idx === $dotnav.find('.list').length - 1) {
@@ -104,7 +99,7 @@ $(function(){
 	// 用滑鼠滾輪cut
 	$lContent.on('mousewheel DOMMouseScroll', function(e, delta){
 		if (_scrollEvent === false && !$('body').hasClass('add-blur')) {
-			_nowCut = 1;
+			_nowCut = 0;
 			_scrollEvent = true;
 
 			var _idx       = $('.dotnav .list.is-curr').index(),
@@ -127,7 +122,7 @@ $(function(){
 			} else if (delta < 0 && _idx < ($('.dotnav .list').length - 1)){
 				// 向下捲動，且不在最後一幕
 				if (_lock === true) {
-					// 是由動畫完成而自動進下一cut的 所以滑鼠事件為播放影片
+					// 第一cut 以及是由左側按鈕而進cut的 所以滑鼠事件為播放影片
 					_lock = false;
 
 					var _newIdx = $('.dotnav .list.is-curr').index(),
@@ -159,12 +154,14 @@ $(function(){
 		// 檢查到哪一cut影片以供執行動畫
 		$videoList.each(function(){
 			if ($(this).offset().top === 0 && _lock === false) {
-				_nowCut = 1;
+				_nowCut = 0;
 				runAnimation($(this).attr('class').split('list ')[1]);
 			} else {
 				// 將圖片與文字還原
-				$(this).find('.os').removeClass('hasAnimate');
-				$(this).find('img').attr('src', '../content/img/video/' + $(this).attr('class').split('list ')[1] + '/gf_001.jpg');
+				$(this).delay(_speed).queue(function(){
+					$(this).find('.os').removeClass('hasAnimate');
+					$(this).find('img').attr('style', '');
+				});
 			}
 		});
 
@@ -258,22 +255,19 @@ $(function(){
 	function runAnimation(cut) {
 		var $nowCut = $videoWrap.find('.' + cut),
 			$img    = $nowCut.find('img'),
-			_amount = $nowCut.data('amount');
+			_amount = $img.length;
 
+		$nowCut.siblings().dequeue();
 		_scrollEvent = true;
 		// 3~7cut文字加動畫
-		if ((cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') && _nowCut === 2 && _lock === false) {
+		if ((cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') && _nowCut === 1 && _lock === false) {
 			$nowCut.find('.os').addClass('hasAnimate');
 		}
 
 		// 判斷是否跑完了
 		if (_nowCut < _amount && _lock === false) {
 			setTimeout(function(){
-				if (_nowCut < 10) {
-					$img.attr('src', '../content/img/video/' + cut + '/gf_00' + _nowCut + '.jpg');
-				} else {
-					$img.attr('src', '../content/img/video/' + cut + '/gf_0' + _nowCut + '.jpg');
-				}
+				$img.eq(_nowCut).css({'z-index' : 0});
 				_nowCut += 1;
 				runAnimation(cut);
 			}, 100);
