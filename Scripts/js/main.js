@@ -23,7 +23,7 @@ var $menu        = $('.menu'),
 	_scrollEvent = false, // 是否停止滑鼠滾輪事件
 	_lock        = true, // 是否為動畫跑完後自動進到下一cut的 (true = 目前設定為不自動播放)
 	_speed       = 500, // 動畫速度
-	_nowCut      = 0;
+	_nowCut      = 1;
 
 $(function(){
 	setViewHeight();
@@ -80,7 +80,7 @@ $(function(){
 			var _videoHei = $videoList.height(),
 				_idx      = $(this).index();
 
-			_nowCut = 0;
+			_nowCut = 1;
 			_lock = false;
 			$(this).addClass('is-curr').siblings().removeClass('is-curr');
 			$lContent.animate({
@@ -99,7 +99,7 @@ $(function(){
 	// 用滑鼠滾輪cut
 	$lContent.on('mousewheel DOMMouseScroll', function(e, delta){
 		if (_scrollEvent === false && !$('body').hasClass('add-blur')) {
-			_nowCut = 0;
+			_nowCut = 1;
 			_scrollEvent = true;
 
 			var _idx       = $('.dotnav .list.is-curr').index(),
@@ -154,14 +154,12 @@ $(function(){
 		// 檢查到哪一cut影片以供執行動畫
 		$videoList.each(function(){
 			if ($(this).offset().top === 0 && _lock === false) {
-				_nowCut = 0;
+				_nowCut = 1;
 				runAnimation($(this).attr('class').split('list ')[1]);
 			} else {
 				// 將圖片與文字還原
-				$(this).delay(_speed).queue(function(){
-					$(this).find('.os').removeClass('hasAnimate');
-					$(this).find('img').attr('style', '');
-				});
+				$(this).find('.os').removeClass('hasAnimate');
+				$(this).find('img').attr('src', '../content/img/video/' + $(this).attr('class').split('list ')[1] + '/gf_001.jpg');
 			}
 		});
 
@@ -255,19 +253,22 @@ $(function(){
 	function runAnimation(cut) {
 		var $nowCut = $videoWrap.find('.' + cut),
 			$img    = $nowCut.find('img'),
-			_amount = $img.length;
+			_amount = $nowCut.data('amount');
 
-		$nowCut.siblings().dequeue();
 		_scrollEvent = true;
 		// 3~7cut文字加動畫
-		if ((cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') && _nowCut === 1 && _lock === false) {
+		if ((cut === 'cut03' || cut === 'cut04' || cut === 'cut05' || cut === 'cut06' || cut === 'cut07') && _nowCut === 2 && _lock === false) {
 			$nowCut.find('.os').addClass('hasAnimate');
 		}
 
 		// 判斷是否跑完了
 		if (_nowCut < _amount && _lock === false) {
 			setTimeout(function(){
-				$img.eq(_nowCut).css({'z-index' : 0});
+				if (_nowCut < 10) {
+					$img.attr('src', '../content/img/video/' + cut + '/gf_00' + _nowCut + '.jpg');
+				} else {
+					$img.attr('src', '../content/img/video/' + cut + '/gf_0' + _nowCut + '.jpg');
+				}
 				_nowCut += 1;
 				runAnimation(cut);
 			}, 100);
