@@ -1,0 +1,77 @@
+.m-footer {
+    width    : 100%;
+    position : relative;
+    @include display(table);
+}
+
+.m-footer-bd {
+    text-align : center;
+    height     : 100%;
+    background : $minor-color;
+    position   : relative;
+    @include display(table-cell);
+    @include box-sizing(border-box);
+
+    > * {
+        color : #A8A8A8;
+        @include inline-block;
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-footer {
+        height : 80px;
+    }
+
+    .m-footer-bd {
+        font-size : 32px;
+    }
+
+    .m-footer-bd {
+        letter-spacing : 20px;
+        
+        > * {
+            &.m-icon-stack {
+                font-size : 70px;
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-footer {
+        height : 60px;
+    }
+
+    .m-footer-bd {
+        font-size : 25px;
+    }
+
+    .m-footer-bd {
+        > * {
+            &.m-icon-stack {
+                font-size : 50px;
+            }
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-footer {
+        height : 45px;
+    }
+
+    .m-footer-bd {
+        font-size : 16px;
+
+        > * {
+            &.m-icon-stack {
+                font-size : 35px;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.tagboard-embed {
+    position : relative;
+    z-index  : 2;
+    @include box-sizing(border-box);
+}
+
+@include respond-to(Desktops) {}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {}

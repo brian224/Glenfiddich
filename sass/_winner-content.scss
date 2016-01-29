@@ -1,0 +1,331 @@
+.l-content {
+    background      : image-url('winner/bg.jpg') no-repeat center top;
+    background-size : 100% auto;
+    overflow        : hidden;
+}
+
+.award-hd {
+    .main-title {
+        margin     : 50px 0 20px 0;
+        display    : block;
+        position   : relative;
+        text-align : center;
+
+        em {
+            padding-right : 24px;
+            color         : #473a39;
+            font-size     : 48px;
+            line-height   : 48px;
+
+            &:last-child {
+                padding-right : 0;
+            }
+        }
+    }
+}
+
+.award-bd {
+    margin     : 0 auto;
+    padding    : 26px 26px 26px 400px;
+    background : #fcf7f1;
+    position   : relative;
+    border     : 1px solid #caac81;
+    @include box-sizing(border-box);
+
+    &:before {
+        content    : '';
+        background : image-url('winner/bd-winner1-bg.png') no-repeat 0 0;
+        display    : block;
+        width      : 420px;
+        height     : 100%;
+        position   : absolute;
+        top        : 0;
+        left       : 0;
+    }
+
+    &:after {
+        content    : '';
+        margin-top : -211px;
+        background : image-url('winner/bd-shadow.png') no-repeat 0 0;
+        display    : block;
+        width      : 24px;
+        height     : 422px;
+        position   : absolute;
+        top        : 50%;
+        right      : -24px;
+    }
+
+    .list-area {
+        height   : 100%;
+        position : relative;
+    }
+
+    .award-type {
+        margin-bottom : 16px;
+        display       : block;
+        border-bottom : 1px solid #caac81;
+        color         : #A84;
+        font-size     : 30px;
+        line-height   : 1.6em;
+    }
+
+    .award-item {
+        display  : block;
+        position : relative;
+
+        em {
+            color       : #961e23;
+            font-size   : 22px;
+            line-height : 22px;
+        }
+    }
+
+    .award-list {
+        margin    : 12px 0;
+        font-size : 0;
+
+        .list {
+            position    : relative;
+            color       : #483a39;
+            font-size   : 16px;
+            line-height : 30px;
+            @include box-sizing(border-box);
+
+            span {
+                display        : inline-block;
+                vertical-align : top;
+            }
+        }
+    }
+
+    &.phase1 {
+        .list-area {
+            overflow-y : scroll;
+        }
+
+        .award-item {
+            width    : 320px;
+            overflow : hidden;
+
+            em {
+                float     : left;
+                position  : relative;
+                left      : auto;
+                color     : #a00b0b;
+                font-size : 20px;
+
+                &.count {
+                    float : right;
+                }
+            }
+        }
+
+        .award-list .list {
+            display: table;
+            width: 100%;
+
+            &:nth-child(2n) {
+                padding : 0;
+
+                &:before {
+                    display : none;
+                }
+            }
+
+            > span {
+                display: table-cell;
+                width: 33.33%;
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    .l-content {
+        display : table;
+        width   : 100%;
+    }
+
+    .winner-content {
+        display        : table-cell;
+        vertical-align : middle;
+    }
+
+    .award-hd {
+        padding-bottom : 20px;
+    }
+
+    .award-bd {
+        width         : 964px;
+        height        : 412px;
+        margin-bottom : 50px;
+
+        .award-list .list {
+            display : inline-block;
+            width   : 50%;
+
+            span:first-child {
+                width         : 100px;
+                overflow      : hidden;
+                text-overflow : ellipsis;
+                white-space   : nowrap;
+            }
+
+            &:nth-child(2n) {
+                padding-left : 25px;
+
+                &:before {
+                    content  : '|';
+                    position : absolute;
+                    left     : 0;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    html, body {
+        height : 100%;
+    }
+
+    .l-content {
+        height : 100%;
+    }
+
+    .award-hd .main-title {
+        margin : 0;
+
+        em {
+            font-size : 36px;
+        }
+    }
+
+    .award-bd .award-list .list {
+        display : inline-block;
+        width   : 50%;
+
+        span:first-child {
+            width : 100px;
+        }
+
+        &:nth-child(2n) {
+            padding-left : 25px;
+
+            &:before {
+                content  : '|';
+                position : absolute;
+                left     : 0;
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {
+    .award-bd {
+        padding-left : 26px;
+        position     : absolute;
+        top          : 118px;
+        left         : 10px;
+        right        : 10px;
+        bottom       : 70px;
+
+        &:before, &:after {
+            display : none;
+        }
+
+        .list-area {
+            overflow-y : scroll;
+        }
+    }
+}
+
+@include respond-to(Tablets-Mobiles) {
+}
+
+@include respond-to(Mobiles) {
+    html, body {
+        position   : relative;
+        overflow-y : scroll;
+    }
+
+    .l-content {
+        background-attachment : fixed;
+        min-height            : 100%;
+    }
+
+    .award-hd .main-title {
+        margin-top : 20px;
+
+        em {
+            font-size   : 24px;
+            font-weight : bold;
+            line-height : 24px;
+        }
+    }
+
+    .award-bd {
+        margin   : 0 15px 15px 15px;
+        padding  : 15px;
+        position : relative;
+        top      : auto;
+        left     : auto;
+        right    : auto;
+        bottom   : auto;
+
+        .award-list .list span:first-child {
+            min-width : 120px;
+        }
+
+        .award-item em {
+            font-size   : 16px;
+            line-height : 16px;
+        }
+
+        &.phase1 {
+            .list-area {
+                padding-right : 0;
+            }
+
+            .award-type {
+                font-size   : 22px;
+                line-height : 1.6em;
+            }
+
+            .award-item {
+                width : 100%;
+    
+                em {
+                    font-size : 16px;
+                }
+            }
+
+            .award-list {
+                margin : 0 0 20px 0;
+
+                &:last-child {
+                    margin : 0;
+                }
+
+                .list {
+                    display  : block;
+                    overflow : hidden;
+
+                    span {
+                        width     : 50%;
+                        float     : left;
+                        font-size : 13px;
+
+                        &:nth-child(2) {
+                            font-weight : bold;
+                        }
+
+                        &:last-child {
+                            float : right;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

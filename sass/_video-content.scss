@@ -1,0 +1,73 @@
+html , body {
+    background : transparent;
+    height     : auto;
+}
+
+.video-ft {
+    text-align : center;
+}
+
+.video-button {
+    color      : $color-white;
+    border     : 1px solid $text-major-color;
+    background : $color-black;
+
+    .b-mark {
+        color : $text-major-color;
+    }
+
+    .m-icon {
+        position : relative;
+
+        &.m-icon-gift {
+            color : $text-major-color;
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    html , body {
+        min-width : inherit;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .video-ft {
+        margin-top : 20px;
+    }
+
+    .video-button {
+        padding   : 10px 15px;
+        font-size : 18px;
+
+        .m-icon {
+            top          : -3px;
+            margin-right : 5px;
+            margin-left  : 5px;
+            font-size    : 22px;
+
+            
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+    .video-ft {
+        margin-top : 10px;
+    }
+
+    .video-button {
+        padding   : 5px 10px;
+        font-size : 15px;
+
+        .m-icon {
+            margin-right : 3px;
+            margin-left  : 3px;
+            font-size    : 20px;
+        }
+    }
+}

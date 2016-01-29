@@ -1,0 +1,237 @@
+﻿.product {
+    position : relative;
+    z-index  : 2;
+}
+
+.product-item-figure {
+    margin   : 0 auto;
+    position : relative;
+    z-index  : 1;
+
+    img {
+        position : relative;
+    }
+}
+
+.product-item-data {
+    color    : $minor-color;
+    width    : 100%;
+    position : relative;
+    z-index  : 2;
+
+    > h2 {
+        font-family : $font-blod-family;
+        font-weight : bold;
+        color       : $text-major-color;
+        line-height : 1.2;
+        position    : relative;
+
+        > i {
+            left     : 0;
+            position : absolute;
+        }
+
+        > em {
+            @include display(block);
+        }
+    }
+}
+
+.product-item-content {
+    font-weight : bold;
+}
+
+.product-menu {
+    top      : 50%;
+    left     : 50%;
+    margin   : 130px 0 0 -90px;
+    position : absolute;
+    z-index  : 3;
+
+    > ul {
+        > li {
+            margin-left : 10px;
+            float       : left;
+
+            &:first-child {
+                margin-left : 0;
+            }
+        }
+    }
+}
+
+.product-button {
+    padding     : 5px 8px;
+    font-family : $font-blod-family;
+    font-size   : 12px;
+    border      : 1px solid $minor-color;
+    @include transition(background $transition-times);
+
+    &:hover {
+        background : rgba($minor-color , .5);
+    }
+
+    &.is-curr {
+        color      : $color-white;
+        background : $minor-color;
+    }
+}
+
+.product-menu-arrow {
+    top          : -8px;
+    width        : 0;
+    height       : 0;
+    border-style : solid;
+    border-width : 0 6px 8px 6px;
+    border-color : transparent transparent $minor-color transparent;
+    position     : absolute;
+    @include transition(left $transition-times);
+
+    &.is-curr-01 {
+        left : 40px;
+    }
+
+    &.is-curr-02 {
+        left : 142px;
+    }
+
+    &.is-curr-03 {
+        left : 244px;
+    }
+
+    &.is-curr-04 {
+        left : 346px;
+    }
+}
+
+.product-item-info {
+    margin-top  : 20px;
+    font-size   : 15px;
+    font-weight : bold;
+}
+
+@include respond-to(Desktops) {}
+
+@include respond-to(Desktops-Tablets) {
+    html , body {
+        height : 100%;
+    }
+
+    .l-content {
+        height : 100%;
+    }
+
+    .product {
+        height : 100%;
+    }
+
+    .product-bd {
+        width  : 100%;
+        height : 100%;
+
+        > ul {
+            width  : 100%;
+            height : 100%;
+            @include display(table);
+
+            > li {
+                text-align : center;
+                @include display(table-cell);
+            }
+        }
+    }
+
+    .product-item {
+        @include inline-block;
+    }
+
+    .product-item-figure {
+        margin-top   : -80px;
+        margin-left  : -60px;
+        margin-right : -140px;
+        @include inline-block;
+    }
+
+    .product-item-data {
+        margin-top : -140px;
+        font-size  : 15px;
+        text-align : left;
+        max-width  : 380px;
+        @include inline-block;
+
+        > h2 {
+            margin-bottom  : 5px;
+            padding-bottom : 5px;
+            padding-left   : 90px;
+            font-size      : 25px;
+            border-bottom  : 1px solid $text-major-color;
+
+            > i {
+                top       : -12px;
+                font-size : 70px;
+            }
+        }
+    }
+
+    .product-item-content {
+        margin-bottom : 20px;
+    }
+
+    .product-item-award {
+        margin-top : 20px;
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+    .product-bd {
+        > ul {
+            > li {
+                margin-bottom : 30px;
+            }
+        }
+    }
+
+    .product-item-figure {
+        margin-top : -40px;
+        width      : 70%;
+
+        img {
+            left        : 50%;
+            margin-left : -37%;
+            max-width   : 100%;
+        }
+    }
+
+    .product-item-data {
+        margin-top : -20px;
+        text-align : center;
+
+        > h2 {
+            padding-left : 65px;
+            font-size    : 18px;
+            text-align   : left;
+            @include inline-block;
+
+            > i {
+                top       : -14px;
+                font-size : 60px;
+            }
+
+            > em {
+                border-bottom : 1px solid $text-major-color;
+            }
+        }
+    }
+
+    .product-item-content {
+        font-size : 12px;
+    }
+
+    .product-menu {
+        display : none;
+    }
+}

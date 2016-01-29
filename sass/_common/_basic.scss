@@ -1,0 +1,195 @@
+.b-middle {
+    font-size  : 0;
+    max-height : 100%;
+
+    &:before {
+        content : "";
+        height  : 100%;
+        @include inline-block;
+    }
+
+    > * {
+        font-size : initial;
+        zoom      : 1;
+        @include inline-block;
+    }
+}
+
+/* clearfix */
+.b-clearfix {
+    &:after {
+        content : "";
+        width   : 100%;
+        height  : 0;
+        clear   : both;
+        @include clearfix;
+        @include display(block);
+    }
+}
+
+/* cloak */
+.b-cloak {
+    @include opacity(0);
+}
+
+/* hide */
+.b-hide {
+    display : none !important;
+}
+
+/* link */
+.b-link {
+    @at-root {
+        a#{&} {
+            color : inherit;
+        }
+    }
+
+    &.is-underline {
+        padding-bottom : 2px;
+        border-bottom  : 1px solid $minor-color;
+    }
+}
+
+/* mark */
+.b-mark {
+    color      : inherit;
+    background : transparent;
+}
+
+/* br */
+[class^="b-br-"] , [class*=" b-br-"] {
+    display : none !important;
+}
+
+
+/* row */
+.b-row {
+    @include clearfix;
+
+    &.b-clearfix {
+        overflow : visible;
+        @extend .b-clearfix;
+    }
+}
+
+/* col */
+[class^="b-col-"] , [class*=" b-col-"] {
+    min-height : 1px;
+    position   : relative;
+    @include box-sizing(border-box);
+}
+
+/* color */
+@each $key , $value in $color {
+    .b-text-#{$key} {
+        color : #{$value} !important;
+    }
+
+    .b-bg-#{$key} {
+        background-color : #{$value} !important;
+    }
+}
+
+@include respond-to(Desktops) {
+    .b-hide-md {
+        display : none !important;
+    }
+
+    .b-row {
+        margin-right : -15px;
+        margin-left  : -15px;
+    }
+
+    /* br */
+    .b-br-md {
+        display : block !important;
+    }
+
+    /* col */
+    $types : 12;
+    $total : 12;
+    @while $types > 0 {
+        .b-col-md-#{$types} {
+            padding-right : 15px;
+            padding-left  : 15px;
+            width         : ((100% / $total) * $types) !important;
+
+            @if $types != 12 {
+                float : left;
+            }
+        }
+
+        $types : $types - 1;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .b-hide-sm {
+        display : none !important;
+    }
+
+    .b-row {
+        margin-right : -10px;
+        margin-left  : -10px;
+    }
+
+    /* br */
+    .b-br-sm {
+        display : block !important;
+    }
+
+    /* col */
+    $types : 12;
+    $total : 12;
+    @while $types > 0 {
+        .b-col-sm-#{$types} {
+            padding-right : 10px;
+            padding-left  : 10px;
+            width         : ((100% / $total) * $types) !important;
+
+            @if $types != 12 {
+                float : left;
+            }
+        }
+
+        $types : $types - 1;
+    }
+}
+
+@include respond-to(Mobiles) {
+    .b-hide-xs {
+        display : none !important;
+    }
+
+    .b-row {
+        margin-right : -5px;
+        margin-left  : -5px;
+    }
+
+    /* br */
+    .b-br-xs {
+        display : block !important;
+    }
+
+    /* col */
+    $types : 6;
+    $total : 6;
+    @while $types > 0 {
+        .b-col-xs-#{$types} {
+            padding-right : 5px;
+            padding-left  : 5px;
+            width         : ((100% / $total) * $types) !important;
+
+            @if $types != 6 {
+                float : left;
+            }
+        }
+
+        $types : $types - 1;
+    }
+}

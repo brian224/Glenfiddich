@@ -1,0 +1,184 @@
+﻿.m-icon-stack {
+    line-height    : 0;
+    position       : relative;
+    @include inline-block;
+
+    &.m-icon-stack-logos-ver {
+        .m-icon {
+            &.m-icon-stack-logo-ver {
+                color : $major-color;
+            }
+
+            &.m-icon-stack-logo-text-ver {
+                color : $color-white;
+            }
+
+            &.m-icon-stack-logo-info-ver {
+                color : $major-color;
+            }
+        }
+    }
+
+    &.m-icon-stack-logos {
+        .m-icon {
+            &.m-icon-stack-logo {
+                color : $major-color;
+            }
+
+            &.m-icon-stack-logo-text {
+                color : $minor-color;
+            }
+
+            &.m-icon-stack-logo-info {
+                color : $major-color;
+            }
+        }
+    }
+
+    &.m-icon-stack-medias {
+        .m-icon {
+            &.m-icon-stack-media-square {
+                color : $sub-color;
+            }
+
+            &.m-icon-stack-media-play {
+                color : $color-white;
+            }
+        }
+    }
+
+    &.m-icon-stack-dranks {
+        .m-icon {
+            &.m-icon-stack-drank-circle {
+                color : $color-white;
+            }
+
+            &.m-icon-stack-drank-icon {
+                color : $color-black;
+            }
+
+            &.m-icon-stack-drank-ban {
+                color : #A11;
+            }
+        }
+    }
+
+    .m-icon {
+        position : relative;
+        @include display(block);
+
+        &.is-absolute {
+            top      : 0;
+            left     : 0;
+            position : absolute;
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-icon-stack {
+        &.m-icon-stack-logos-ver {
+            .m-icon {
+                font-size : 180px;
+
+                &.m-icon-stack-logo-ver {
+                    
+                }
+
+                &.m-icon-stack-logo-text-ver {
+                    
+                }
+            }
+        }
+
+        &.m-icon-stack-logos {
+            font-size : 140px;
+
+            &.is-lg {
+                font-size : 280px;
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-icon-stack {
+        &.m-icon-stack-fbs {
+            .m-icon {
+                &.m-icon-stack-fb-square {
+                    color : $color-facebook;
+                }
+
+                &.m-icon-stack-fb {
+                    color : $color-white;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-icon-stack {
+        &.m-icon-stack-logos-ver {
+            .m-icon {
+                font-size : 135px;
+
+                &.m-icon-stack-logo-ver {
+                    
+                }
+
+                &.m-icon-stack-logo-text-ver {
+                    
+                }
+            }
+        }
+
+        &.m-icon-stack-logos {
+            font-size : 115px;
+
+            &.is-lg {
+                font-size : 210px;
+            }
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-icon-stack {
+        &.m-icon-stack-logos-ver {
+            .m-icon {
+                font-size : 90px;
+
+                &.m-icon-stack-logo-ver {
+                    
+                }
+
+                &.m-icon-stack-logo-text-ver {
+                    
+                }
+            }
+        }
+
+        &.m-icon-stack-logos {
+            font-size : 90px;
+
+            &.is-lg {
+                font-size : 140px;
+            }
+        }
+
+        &.m-icon-stack-fbs {
+            .m-icon {
+                &.m-icon-stack-fb-square {
+                    color : $color-facebook;
+                }
+
+                &.m-icon-stack-fb {
+                    color : $color-white;
+                }
+            }
+        }
+    }
+}

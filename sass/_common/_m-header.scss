@@ -1,0 +1,156 @@
+.m-header {
+    background : transparent;
+    @include transition((backgrund $transition-times , box-shadow $transition-times));
+
+    &:before {
+        content  : "";
+        width    : 100%;
+        position : absolute;
+        z-index  : 1;
+        @include transition((top $transition-times , right $transition-times));
+    }
+
+    &.is-open {
+        .m-nav-button {
+            &.is-nav {
+                &:before , &:after {
+                    margin-top : -1px;
+                }
+
+                &:before {
+                    @include rotate(-45deg);
+                }
+
+                &:after {
+                    @include rotate(45deg);
+                }
+
+                > i {
+                    display : none;
+                }    
+            }
+        }
+    }
+
+    &.is-scroll {
+        background : rgba($color-white , .9);
+        @include box-shadow(rgba($color-black , .25) 0 2px 5px);
+    }
+
+    > h1 {
+        top         : -99999px;
+        left        : -9999px;
+        text-indent : -99999px;
+        position    : absolute;
+    }
+}
+
+.m-header-logo {
+    height : 100%;
+    @include clearfix;
+    @include inline-block;
+}
+
+@include respond-to(Desktops) {
+    .m-header {
+        padding-right : 25px;
+        padding-left  : 25px;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-header {
+        height : 75px;
+
+        &:before {
+            top        : 0;
+            right      : -100%;
+            height     : 100%;
+            background : $color-white;
+        }
+
+        &.is-open {
+            &:before {
+                right : 0;
+            }
+
+            .m-nav-sub {
+                visibility : visible;
+                @include opacity(1);
+            }
+        }
+
+        > * {
+            position : relative;
+            z-index  : 2;
+        }
+    }
+
+    .m-header-logo {
+        .m-icon-stack {
+            margin-top : -30px;
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-header {
+        padding-right : 15px;
+        padding-left  : 15px;
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-header {
+        padding-right : 15px;
+        padding-left  : 15px;
+        height        : 45px;
+
+        &:before {
+            top        : -3000%;
+            left       : 0;
+            height     : 3000%;
+            background : $sub-color;
+            @include opacity(.95);
+        }
+
+        &.is-open {
+            &:before {
+                top : 0;
+            }
+
+            .m-nav-button {
+                &.is-nav {
+                    &:before , &:after , > i {
+                        background : $color-white;
+                    }
+                }
+
+                &.is-media {
+                    width     : 0;
+                    max-width : 0;
+                }
+            }
+
+            .m-nav-sub {
+                max-height : 999px;
+            }
+
+            .m-nav-close {
+                padding-left : 10px !important;
+                max-width    : 55px;
+            }
+        }
+    }
+
+    .m-header-logo {
+        position : relative;
+        z-index  : 2;
+
+        .m-icon-stack {
+            margin-top : -21px;
+        }
+    }
+}

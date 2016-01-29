@@ -1,0 +1,125 @@
+.m-load {
+    width  : 100%;
+    height : 100%;
+    @include display(table);
+    @include box-sizing(border-box);
+}
+
+.m-load-bd {
+    text-align : center;
+    color      : $major-color;
+    position   : relative;
+    @include display(table-cell);
+    @include box-sizing(border-box);
+
+    > em {
+        margin-top  : 8px;
+        line-height : 20px;
+        @include display(block);
+    }
+}
+
+.m-load-line {
+    @include inline-block;
+
+     > i {
+        border     : 0;
+        background : $major-color;
+        @include inline-block;
+        @include box-sizing(border-box);
+
+        &:nth-child(1) {
+            @include animation(line-scale 1.2s -1.2s infinite ease);
+        }
+
+        &:nth-child(2) {
+            @include animation(line-scale 1.2s -1.1s infinite ease);
+        }
+
+        &:nth-child(3) {
+            @include animation(line-scale 1.2s -1s infinite ease);
+        }
+
+        &:nth-child(4) {
+            @include animation(line-scale 1.2s -0.9s infinite ease);
+        }
+
+        &:nth-child(5) {
+            @include animation(line-scale 1.2s -0.8s infinite ease);
+        }
+    }
+}
+
+@include keyframes(line-scale) {
+    0% , 40% , 100% {
+        @include transform(scaleY(.4));
+    }
+
+    20% {
+        @include transform(scaleY(1));
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-load-bd {
+        .m-icon-stack {
+            margin-bottom : 25px;
+        }
+
+        > em {
+            font-size : 16px;
+        }
+    }
+
+    .m-load-line {
+        > i {
+            margin : 0 2px;
+            width  : 5px;
+            height : 30px;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-load-bd {
+        .m-icon-stack {
+            margin-bottom : 20px;
+        }
+
+        > em {
+            font-size : 15px;
+        }
+    }
+
+    .m-load-line {
+        > i {
+            margin : 0 2px;
+            width  : 4px;
+            height : 25px;
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-load-bd {
+        .m-icon-stack {
+            margin-bottom : 15px;
+        }
+
+        > em {
+            font-size : 14px;
+        }
+    }
+
+    .m-load-line {
+        > i {
+            margin : 0 1px;
+            width  : 3px;
+            height : 20px;
+        }
+    }
+}

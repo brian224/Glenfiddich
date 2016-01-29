@@ -1,0 +1,100 @@
+$FontNum : 2015101401;
+
+@font-face {
+    font-family : 'GFFoundersSans';
+    src         : font-url('GFFoundersSansWeb-Regular.eot?#{$FontNum}');
+    src         : font-url('GFFoundersSansWeb-Regular.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFFoundersSansWeb-Regular.woff?#{$FontNum}') format('woff'),
+                  font-url('GFFoundersSansWeb-Regular.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFFoundersSansWeb-Regular.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'GFFoundersSansLight';
+    src         : font-url('GFFoundersSansWeb-Light.eot?#{$FontNum}');
+    src         : font-url('GFFoundersSansWeb-Light.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFFoundersSansWeb-Light.woff?#{$FontNum}') format('woff'),
+                  font-url('GFFoundersSansWeb-Light.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFFoundersSansWeb-Light.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'GFFoundersScript';
+    src         : font-url('GFFoundersScriptWeb-Regular.eot?#{$FontNum}');
+    src         : font-url('GFFoundersScriptWeb-Regular.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFFoundersScriptWeb-Regular.woff?#{$FontNum}') format('woff'),
+                  font-url('GFFoundersScriptWeb-Regular.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFFoundersScriptWeb-Regular.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'GFFoundersScriptLight';
+    src         : font-url('GFFoundersScriptWeb-Light.eot?#{$FontNum}');
+    src         : font-url('GFFoundersScriptWeb-Light.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFFoundersScriptWeb-Light.woff?#{$FontNum}') format('woff'),
+                  font-url('GFFoundersScriptWeb-Light.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFFoundersScriptWeb-Light.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'GFModern';
+    src         : font-url('GFModernWeb-Light.eot?#{$FontNum}');
+    src         : font-url('GFModernWeb-Light.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFModernWeb-Light.woff?#{$FontNum}') format('woff'),
+                  font-url('GFModernWeb-Light.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFModernWeb-Light.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+@font-face {
+    font-family : 'GFModernBold';
+    src         : font-url('GFModernWeb-Bold.eot?#{$FontNum}');
+    src         : font-url('GFModernWeb-Bold.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('GFModernWeb-Bold.woff?#{$FontNum}') format('woff'),
+                  font-url('GFModernWeb-Bold.ttf?#{$FontNum}') format('truetype'),
+                  font-url('GFModernWeb-Bold.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}
+
+/*@font-face {
+    font-family : DFLiHeiStd;
+    src         : font-url('DFLiHeiStd-W3.eot?#{$FontNum}');
+    src         : font-url('DFLiHeiStd-W3.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('DFLiHeiStd-W3.woff?#{$FontNum}') format('woff'),
+                  font-url('DFLiHeiStd-W3.ttf?#{$FontNum}') format('truetype'),
+                  font-url('DFLiHeiStd-W3.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}*/
+
+/*@font-face {
+    font-family : DFLiHeiStdBold;
+    src         : font-url('DFLiHeiStd-W5.eot?#{$FontNum}');
+    src         : font-url('DFLiHeiStd-W5.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('DFLiHeiStd-W5.woff?#{$FontNum}') format('woff'),
+                  font-url('DFLiHeiStd-W5.ttf?#{$FontNum}') format('truetype'),
+                  font-url('DFLiHeiStd-W5.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}*/
+
+/*@font-face {
+    font-family : 'DFLiHeiStdW7';
+    src         : font-url('DFLiHeiStd-W7.eot?#{$FontNum}');
+    src         : font-url('DFLiHeiStd-W7.eot?#iefix#{$FontNum}') format('embedded-opentype'),
+                  font-url('DFLiHeiStd-W7.woff?#{$FontNum}') format('woff'),
+                  font-url('DFLiHeiStd-W7.ttf?#{$FontNum}') format('truetype'),
+                  font-url('DFLiHeiStd-W7.svg?#{$FontNum}#skmFount') format('svg');
+    font-weight : normal;
+    font-style  : normal;
+}*/

@@ -1,0 +1,551 @@
+﻿.l-content {
+    background      : image-url('activity/bg.jpg') no-repeat center top;
+    background-size : 100% auto;
+}
+
+.activity {
+    margin : 0 auto;
+    width  : 100%;
+    @include box-sizing(border-box);
+}
+
+.activity-hd {
+    text-align : center;
+    color      : $text-major-color;
+    position   : relative;
+
+    > h2 {
+        top      : 0;
+        left     : -99999px;
+        position : absolute;
+    }
+}
+
+.activity-bd {
+    position : relative;
+    @inlcude clearfix;
+}
+
+.activity-data {
+    margin-right : 0;
+    margin-left  : 0;
+}
+
+.activity-figure-image {
+    padding-right : 0;
+    padding-left  : 0;
+
+    img {
+        max-width : 100%;
+        position  : relative;
+    }
+}
+
+.activity-content {
+    padding-right : 0;
+    padding-left  : 0;
+
+    > ul {
+        > li {
+            color : $minor-color;
+
+            > h4 {
+                font-weight : bold;
+                color       : $text-major-color;
+
+                > em {
+                    border-bottom : 1px solid $text-major-color;
+                }
+            }
+
+            > span {
+                margin-top : 5px;
+                @include display(block);
+
+                .m-icon {
+                    margin-right : 5px;
+                    text-align   : center;
+
+                    &.m-icon-hashtag {
+                        color    : $color-white;
+                        position : relative;
+
+                        &:before {
+                            position : relative;
+                            z-index  : 2;
+                        }
+
+                        &:after {
+                            content    : "";
+                            top        : 0;
+                            left       : 0;
+                            background : $minor-color;
+                            position   : absolute;
+                            z-index    : 1;
+                            @include clearfix;
+                            @include border-radius(100%);
+                        }
+                    }
+                }
+            }
+
+            > ul {
+                > li {
+                    width : 100%;
+                    @include display(table);
+
+                    * {
+                        @include display(table-cell);
+                    }
+
+                    > em {
+                        width       : 1%;
+                        white-space : nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.activity-frame {
+    color      : $minor-color;
+    background : #f5f5f5;
+
+    > ul {
+        margin-right : 0;
+        margin-left  : 0;
+
+        > li {
+            > h5 {
+                font-weight : bold;
+                color       : $text-major-color;
+            }
+
+            > em {
+                margin-top : 1px;
+                padding    : 5px 5px 2px 5px;
+                border     : 1px solid $minor-color;
+                @include inline-block;
+            }
+
+            > ul {
+                > li {
+                    > ul {
+                        > li {
+                            width : 100%;
+                            @include display(table);
+
+                            * {
+                                @include display(table-cell);
+                            }
+
+                            > em {
+                                width       : 1%;
+                                white-space : nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.activity-ft {
+    color : $minor-color;
+
+    .b-mark , .b-link , [href^="tel"] {
+        font-family : Arial , '微軟正黑體', serif;
+    }
+
+    > ul  {
+        > li {
+            > em {
+                margin-bottom : 8px;
+                padding       : 3px 3px 0 6px;
+                color         : $color-white;
+                background    : $text-major-color;
+                @include inline-block;
+            }
+
+            > p {
+                > b {
+                    top       : 1px;
+                    font-size : 115%;
+                    position  : relative;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    .activity {
+        max-width : 960px;
+    }
+
+    .activity-hd {
+        .m-icon-stack {
+            margin-bottom : 10px;
+            font-size     : 34px;
+        }
+
+        > p {
+            font-size : 16px;
+        }
+    }
+
+    .activity-content {
+        font-size : 15px;
+
+        > ul {
+            > li {
+                margin-top : 30px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > h4 {
+                    margin-bottom : 10px;
+                }
+
+                > span {
+                    .m-icon {
+                        font-size   : 22px;
+                        width       : 22px;
+                        height      : 22px;
+                        line-height : 22px;
+
+                        &.m-icon-hashtag {
+                            font-size : 13px;
+
+                            &:after {
+                                width  : 22px;
+                                height : 22px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .activity-frame {
+        margin-top : 40px;
+        padding    : 40px;
+
+        > ul {
+            > li {
+                > h5 {
+                    margin-bottom : 10px;
+                    font-size     : 18px;
+                }
+
+                > p {
+                    font-size : 16px;
+                }
+
+                > em {
+                    margin-bottom : 10px;
+                }
+
+                > ul {
+                    font-size : 15px;
+                }
+            }
+        }
+    }
+
+    .activity-ft {
+        margin-top : 40px;
+
+        > ul  {
+            > li {
+                margin-top : 20px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > p {
+                    margin-bottom : 15px;
+                }
+            }
+        }
+    }
+}
+
+
+@include respond-to(Desktops-Tablets) {
+    .activity-hd {
+        margin-bottom : 40px;
+
+        .m-icon-stack {
+            .m-icon {
+                @include inline-block;
+            }
+        }
+    }
+
+    .activity-content {
+        > ul {
+            > li {
+                > ul {
+                    width : 80%;
+                }
+            }
+        }
+    }
+
+    .activity-figure-image {
+        text-align : right;
+
+        img {
+            right : -50px;
+        }
+    }
+
+    .activity-frame {
+        > ul {
+            > li {
+                > em {
+                    font-size : 14px;
+                }
+            }
+        }
+    }
+
+    .activity-ft {
+        font-size : 14px;
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .activity {
+        padding-right : 20px;
+        padding-left  : 20px;
+    }
+
+    .activity-hd {
+        .m-icon-stack {
+            margin-bottom : 8px;
+            font-size     : 25px;
+        }
+
+        > p {
+            font-size : 15px;
+        }
+    }
+
+    .activity-content {
+        font-size : 14px;
+
+        > ul {
+            > li {
+                margin-top : 25px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > h4 {
+                    margin-bottom : 8px;
+                }
+
+                > span {
+                    .m-icon {
+                        font-size   : 20px;
+                        width       : 20px;
+                        height      : 20px;
+                        line-height : 20px;
+
+                        &.m-icon-hashtag {
+                            font-size : 13px;
+
+                            &:after {
+                                width  : 20px;
+                                height : 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .activity-frame {
+        margin-top : 30px;
+        padding    : 30px;
+
+        > ul {
+            > li {
+                > h5 {
+                    margin-bottom : 8px;
+                    font-size     : 16px;
+                }
+
+                > p {
+                    font-size : 15px;
+                }
+
+                > em {
+                    margin-bottom : 8px;
+                }
+
+                > ul {
+                    font-size : 14px;
+                }
+            }
+        }
+    }
+
+    .activity-ft {
+        margin-top : 30px;
+
+        > ul  {
+            > li {
+                margin-top : 15px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > p {
+                    margin-bottom : 10px;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .activity {
+        padding-right : 15px;
+        padding-left  : 15px;
+    }
+
+    .activity-hd {
+        margin-bottom : 20px;
+
+        .m-icon-stack {
+            margin-bottom : 10px;
+            font-size     : 20px;
+
+            .m-icon {
+                margin-top: 5px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+            }
+        }
+
+        > p {
+            font-size : 13px;
+        }
+    }
+
+    .activity-figure-image {
+        margin-top    : -40px;
+        padding-right : 15px;
+        padding-left  : 15px;
+        text-align    : center;
+
+        img {
+            left : -10px;
+        }
+    }
+
+    .activity-content {
+        font-size : 13px;
+
+        > ul {
+            > li {
+                margin-top : 15px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > h4 {
+                    margin-bottom : 5px;
+                }
+
+                > span {
+                    .m-icon {
+                        font-size   : 18px;
+                        width       : 18px;
+                        height      : 18px;
+                        line-height : 18px;
+
+                        &.m-icon-hashtag {
+                            font-size : 12px;
+
+                            &:after {
+                                width  : 18px;
+                                height : 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .activity-frame {
+        margin-top : 20px;
+        padding    : 20px;
+
+        > ul {
+            > li {
+                margin-top : 10px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > h5 {
+                    margin-bottom : 5px;
+                    font-size     : 15px;
+                }
+
+                > em {
+                    margin-bottom : 5px;
+                }
+
+                > p {
+                    font-size : 13px;
+                }
+
+                > ul {
+                    margin-right : 0;
+                    margin-left  : 0;
+                    font-size    : 13px;
+                }
+            }
+        }
+    }
+
+    .activity-ft {
+        margin-top : 20px;
+        font-size  : 13px;
+
+        > ul  {
+            > li {
+                margin-top : 10px;
+
+                &:first-child {
+                    margin-top : 0;
+                }
+
+                > p {
+                    margin-bottom : 5px;
+                }
+            }
+        }
+    }
+}

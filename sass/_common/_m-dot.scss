@@ -1,0 +1,152 @@
+.m-dot {
+    top      : 50%;
+    left     : 0;
+    position : fixed;
+    z-index  : 5;
+
+    &.is-blur {
+        @include filter(blur(3px));
+        @include transition(filter $transition-times);
+    }
+}
+
+.m-dot-item {
+    > i {
+        padding  : 1px 6px;
+        width    : 14px;
+        height   : 14px;
+        position : relative;
+        @include display(block);
+
+        &:before {
+            content     : '';
+            top         : 50%;
+            left        : 50%;
+            margin-top  : -4px;
+            margin-left : -4px;
+            background  : $text-major-color;
+            width       : 8px;
+            height      : 8px;
+            position    : absolute;
+            @include border-radius(50%);
+        }
+    }
+
+    &.is-curr {
+        > i {
+            &:before {
+                margin     : -8px 0 0 -8px;
+                background : $color-dot;
+                width      : 14px;
+                height     : 14px;
+                border     : 1px solid $border-minor-color;
+                @include box-shadow(rgba($color-dot , .75) 0 0 6px);
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-dot {
+        &.is-blur {
+            .m-dot-item {
+                > i {
+                    cursor : default;
+                }
+            }
+        }
+    }
+
+    .m-dot-item {
+        > i {
+            cursor : pointer;
+        }
+    }
+
+    .m-dot-media {
+        width  : 94px;
+        height : 94px;
+        cursor : pointer;
+
+        &:after {
+            border-top    : 47px solid transparent;
+            border-bottom : 47px solid transparent;
+            border-left   : 94px solid $text-major-color;
+        }
+
+        > em {
+            font-size : 14px;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-dot {
+        > ul {
+            padding-left : 20px;
+        }
+    }
+
+    .m-dot-item {
+        > i {
+            margin-top    : 8px;
+            margin-bottom : 8px;
+        }
+    }
+
+    .m-dot-media {
+        padding     : 0 0 0 5px;
+        font-size   : 13px;
+        color       : $color-white;
+        line-height : 18px;
+        position    : relative;
+        text-shadow : 0 0 5px #704121;
+        @include box-sizing(border-box);
+
+        &:after {
+            content       : '';
+            top           : 0;
+            left          : 0;
+            position      : absolute;
+            z-index       : -1;
+        }
+
+        > em {
+            .b-mark {
+                color     : #FE5;
+                @include display(block);
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-dot-media {
+        width  : 80px;
+        height : 80px;
+
+        &:after {
+            border-top    : 40px solid transparent;
+            border-bottom : 40px solid transparent;
+            border-left   : 80px solid $text-major-color;
+        }
+
+        > em {
+            font-size : 13px;
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-dot {
+        > ul {
+            padding-left : 5px;
+        }
+    }
+
+    .m-dot-media {
+        display : none;
+    }
+}

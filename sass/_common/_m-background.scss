@@ -1,0 +1,41 @@
+.m-background {
+    top      : 0;
+    right    : 0;
+    left     : 0;
+    position : fixed;
+    z-index  : 1;
+    @include clearfix;
+}
+
+.m-background-figure {
+    width    : 100%;
+    height   : 100%;
+    position : relative;
+    @include display(block);
+
+    img {
+        width : 100%;
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-background {
+        bottom : 80px;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-background {
+        bottom : 60px;
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-background {
+        bottom : 45px;
+    }
+}

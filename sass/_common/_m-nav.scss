@@ -1,0 +1,209 @@
+.m-nav {
+    font-family : $font-blod-family;
+    float       : right;
+
+    > ul {
+        &.m-nav-sub {
+            > li {
+                > a {
+                    font-size : 14px;
+                    color     : lighten($minor-color , 18%);
+                }
+            }
+        }
+    }
+}
+
+.m-nav-button {
+    text-align : center;
+    @include box-sizing(border-box);
+
+    &.is-nav {
+        &:before , &:after , > i {
+            content    : "";
+            top        : 50%;
+            left       : 0;
+            margin-top : -1px;
+            width      : 100%;
+            height     : 2px;
+            background : $sub-color;
+            position   : absolute;
+            @include border-radius(1px);
+            @include transform-origin(center , center);
+            @include transition((background $transition-times , transform $transition-times));
+        }
+    }
+}
+
+.m-nav-close {
+    padding-left : 0 !important;
+    font-family  : $font-family;
+    font-size    : 12px;
+    white-space  : nowrap;
+    max-width    : 0;
+    @include clearfix;
+    @include transition(max-width $transition-times);
+}
+
+.m-nav-share {
+    margin      : 0 auto;
+    padding     : 10px 0;
+    font-size   : 14px;
+    color       : $color-dot !important;
+    width       : 90%;
+    line-height : 20px;
+    border      : 1px solid $color-white;
+
+    .m-icon {
+        margin    : 0 5px;
+        font-size : 20px;
+        color     : $color-white;
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-nav {
+        > ul {
+            > li {
+                padding-left : 20px;
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-nav {
+        height : 100%;
+
+        > ul {
+            height : 100%;
+            float  : right;
+            @include display(table);
+
+            &.m-nav-sub {
+                visibility : hidden;
+                @inlcude opacity(0);
+                @include transition(opacity $transition-times);
+            }
+
+            > li {
+                @include display(table-cell);
+            }
+        }
+    }
+
+    .m-nav-button {
+        min-width : 40px;
+
+        &.is-nav {
+            margin-top : 4px;
+            height     : 40px;
+
+            &:before {
+                margin-top : -11px;
+            }
+
+            &:after {
+                margin-top : 9px;
+            }    
+        }
+
+        &.is-share , &.is-media {
+            .m-icon-stack {
+                font-size : 30px;
+            }
+
+            > em {
+                margin-top : 5px;
+                color      : $color-facebook;
+                @include display(block);
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-nav {
+        > ul {
+            > li {
+                padding-left : 15px;
+            }
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-nav {
+        > ul {
+            &.m-nav-main {
+                height   : 45px;
+                position : relative;
+                z-index  : 2;
+                @include display(table);
+
+                > li {
+                    padding-left  : 10px;
+                    @include display(table-cell);
+                }
+            }
+
+            &.m-nav-sub {
+                left       : 0;
+                width      : 100%;
+                max-height : 0;
+                position   : absolute;
+                z-index    : 2;
+                @include clearfix;
+                @include transition(max-height $transition-times);
+
+                > li {
+                    padding-top    : 15px;
+                    padding-bottom : 15px;
+                    text-align     : center;
+
+                    > a {
+                        &:not(.m-nav-share) {
+                            padding        : 5px;
+                            font-size      : 17px;
+                            color          : $color-white;
+                            letter-spacing : 1px;
+                            border-bottom  : 1px solid $color-white;    
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .m-nav-button {
+        margin-top : 5px;
+        min-width  : 30px;
+
+        &.is-nav {
+            height : 30px;
+
+            &:before {
+                margin-top : -11px;
+            }
+
+            &:after {
+                margin-top : 9px;
+            }    
+        }
+
+        &.is-share , &.is-media {
+            .m-icon-stack {
+                font-size : 30px;
+            }
+        }
+
+        &.is-media {
+            min-width : inherit;
+            max-width : 30px;
+            @include clearfix;
+            @include transition((width $transition-times , max-width $transition-times));
+        }
+    }
+}

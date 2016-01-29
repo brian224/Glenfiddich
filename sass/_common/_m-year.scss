@@ -1,0 +1,209 @@
+.m-year {
+    top      : 0;
+    right    : 0;
+    bottom   : 0;
+    left     : 0;
+    position : fixed;
+    z-index  : 20;
+}
+
+.m-year-count {
+    width      : 100%;
+    height     : 100%;
+    text-align : center;
+    @include display(table);
+}
+
+.m-year-item {
+    @include display(table-cell);
+
+    > li {
+        background : #857E7D;
+        @include inline-block;
+        @include box-sizing(border-box);
+
+        > * {
+            position : relative;
+            z-index  : 2;
+        }
+
+        .m-icon-stack {
+            position : relative;
+            z-index  : 1;
+            @include clearfix;
+        }
+    }
+}
+
+.m-year-info {
+    color       : $color-white;
+    line-height : 1.4;
+    @include display(block);
+}
+
+.m-year-button-group {
+    position : relative;
+}
+
+.m-year-button {
+    text-align : center;
+    color      : $color-white;
+
+    &.is-already {
+        background : $major-color;
+    }
+
+    &.is-not {
+        color      : $major-color;
+        background : $minor-color;
+    }
+}
+
+.m-year-warning {
+    color : #FE5;
+
+    .m-icon {
+        margin-right : 5px;
+        position     : relative;
+    }
+}
+
+@include respond-to(Desktops) {
+    .m-year-item {
+        > li {
+            padding : 100px 30px;
+            width   : 800px;
+
+            .m-icon-stack {
+                margin-top    : -80px;
+                margin-bottom : -60px;
+            }
+        }
+    }
+
+    .m-year-info {
+        font-size : 35px;
+    }
+
+    .m-year-button-group {
+        margin-top : 15px;
+    }
+
+    .m-year-button {
+        margin-left : 11px;
+        padding     : 15px 65px;
+        font-size   : 24px;
+        @include transition(background $transition-times);
+
+        &:first-child {
+            margin-left : 0;
+        }
+
+        &.is-already {
+            &:hover {
+                background : darken($minor-color , 10%);
+            }
+        }
+
+        &.is-not {
+            &:hover {
+                background : darken($major-color , 10%);
+            }
+        }
+    }
+
+    .m-year-warning {
+        margin-top : 10px;
+        font-size  : 25px;
+
+        .m-icon {
+            top       : -3px;
+            font-size : 30px;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-year-item {
+        > li {
+            @include  border-radius($module-border-radius);
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-year-item {
+        > li {
+            padding : 70px 20px;
+            width   : 550px;
+
+            .m-icon-stack {
+                margin-top    : -60px;
+                margin-bottom : -45px;
+            }
+        }
+    }
+
+    .m-year-info {
+        font-size : 28px;
+    }
+
+    .m-year-button-group {
+        margin-top : 10px;
+    }
+
+    .m-year-button {
+        margin-left : 6px;
+        padding     : 10px 50px;
+        font-size   : 20px;
+
+        &:first-child {
+            margin-left : 0;
+        }
+    }
+
+    .m-year-warning {
+        margin-top : 8px;
+        font-size  : 20px;
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-year-item {
+        > li {
+            padding : 40px 15px;
+            width   : 90%;
+            @include  border-radius(($module-border-radius / 2));
+
+            .m-icon-stack {
+                margin-top    : -40px;
+                margin-bottom : -30px;
+            }
+        }
+    }
+
+    .m-year-info {
+        font-size : 20px;
+    }
+
+    .m-year-button-group {
+        margin : 0 auto;
+        width  : 90%;
+    }
+
+    .m-year-button {
+        margin-top     : 10px;
+        padding-top    : 10px;
+        padding-bottom : 10px;
+        font-size      : 16px;
+        width          : 100%;
+        @include display(block);
+    }
+
+    .m-year-warning {
+        margin-top : 5px;
+        font-size  : 15px;
+    }
+}
