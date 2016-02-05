@@ -1,0 +1,266 @@
+﻿.l-content {
+    height   : 100%;
+    overflow : hidden;
+}
+
+.product-list {
+    margin         : 0 auto;
+    vertical-align : middle;
+    z-index        : 1;
+    font-size      : 0;
+    text-align     : center;
+    position       : relative;
+
+    &:after {
+        content  : '';
+        display  : block;
+        width    : 100%;
+        height   : 40%;
+        position : absolute;
+        bottom   : 0;
+        @include background-image(linear-gradient(to bottom, rgba(251, 235, 211, 0), rgba(251, 235, 211, 1)));
+    }
+
+    .list {
+        position : relative;
+
+        &.year15 .img-wrap:after {
+            background      : image-url('limited/year15.png') no-repeat 0 0;
+            background-size : 100% auto;
+        }
+
+        &.year18 .img-wrap:after {
+            background      : image-url('limited/year18.png') no-repeat 0 0;
+            background-size : 100% auto;
+        }
+
+        .img-wrap {
+            position : relative;
+
+            &:before {
+                content         : '';
+                background      : image-url('common/gift.png') no-repeat 0 0;
+                background-size : 100% auto;
+                width           : 108px;
+                height          : 103px;
+                position        : absolute;
+                top             : 0;
+                right           : 0;
+            }
+
+            &:after {
+                content         : '';
+                background      : image-url('limited/year12.png') no-repeat 0 0;
+                background-size : 100% auto;
+                width           : 46px;
+                height          : 25px;
+                position        : absolute;
+                top             : 68px;
+                right           : 28px;
+            }
+        }
+
+        .product-info {
+            margin-right : 32px;
+            padding      : 5px 0;
+            background   : #fcf7f1;
+            position     : relative;
+            border       : 1px solid #caac81;
+
+            .product-name i {
+                color       : #971E22;
+                font-size   : 20px;
+                line-height : 1.6em;
+            }
+
+            .info {
+                display     : block;
+                color       : #7D5624;
+                font-size   : 15px;
+                line-height : 1.6em;
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops) {
+    body {
+        background : #fff8f3;
+        position   : relative;
+
+        &:before {
+            content         : '';
+            margin-top      : -170px;
+            background      : image-url('limited/bg.png') repeat-x center center;
+            background-size : 205px auto;
+            width           : 100%;
+            height          : 239px;
+            position        : absolute;
+            top             : 50%;
+            left            : 0;
+        }
+    }
+
+    .l-content {
+        display : table;
+        width   : 100%;
+
+        &:before, &:after {
+            content  : '';
+            display  : block;
+            width    : 150px;
+            height   : 100%;
+            position : absolute;
+            top      : 0;
+            left     : 0;
+            @include background-image(linear-gradient(to right, rgba(255, 248, 243, 1), rgba(255, 248, 243, 0)));
+        }
+
+        &:after {
+            left  : auto;
+            right : 0;
+            @include background-image(linear-gradient(to left, rgba(255, 248, 243, 1), rgba(255, 248, 243, 0)));
+        }
+    }
+
+    .product-list {
+        display  : table-cell;
+
+        .list {
+            margin       : 20px 0;
+            padding-left : 52px;
+            display      : inline-block;
+            width        : 324px;
+            z-index      : 1;
+
+            &:first-child {
+                padding-left : 0;
+            }
+
+            .img-wrap {
+                padding-right : 32px;
+                width         : 292px;
+
+                img {
+                    width : 100%;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {
+    body {
+        background : #fff8f3;
+        overflow   : auto;
+    }
+
+    .product-list {
+        margin : 0;
+
+        &:before, &:after {
+            content  : '';
+            display  : block;
+            width    : 50px;
+            height   : 100%;
+            position : absolute;
+            top      : 0;
+            left     : 0;
+            @include background-image(linear-gradient(to right, rgba(255, 248, 243, 1), rgba(255, 248, 243, 0)));
+        }
+
+        &:after {
+            left    : auto;
+            right   : 0;
+            z-index : -1;
+            @include background-image(linear-gradient(to left, rgba(255, 248, 243, 1), rgba(255, 248, 243, 0)));
+        }
+
+        .list {
+            margin  : 80px auto 20px;
+            padding : 0;
+            display : block;
+            width   : 100%;
+
+            &:before {
+                content         : '';
+                margin          : -165px 0 0 0;
+                background      : image-url('limited/bg.png') repeat-x center center;
+                background-size : 205px auto;
+                width           : 100%;
+                height          : 239px;
+                position        : absolute;
+                top             : 50%;
+                left            : 0;
+                z-index         : -1;
+            }
+
+            &:after {
+                content  : '';
+                display  : block;
+                width    : 100%;
+                height   : 50%;
+                position : absolute;
+                bottom   : 0;
+                left     : 0;
+                @include background-image(linear-gradient(to bottom, rgba(251, 235, 211, 0), rgba(251, 235, 211, 1) 70%, rgba(251, 235, 211, 0)));
+            }
+
+            .img-wrap {
+                margin        : 0 auto;
+                padding-right : 32px;
+                width         : 292px;
+
+                img {
+                    width : 100%;
+                }
+            }
+
+            .product-info {
+                margin-right : 0;
+                display      : inline-block;
+                width        : 290px;
+                @include box-sizing(border-box);
+            }
+
+            .img-wrap, .product-info {
+                z-index : 1;
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+    .product-list {
+        .list {
+            margin  : 0 auto;
+            padding : 60px 0 20px 0;
+            display : block;
+            width   : 100%;
+
+            &:before {
+                margin-top      : -155px;
+                background-size : 160px auto;
+            }
+
+            .img-wrap {
+                margin     : 0 auto;
+                padding    : 0;
+                width      : 290px;
+                text-align : left;
+
+                &:before {
+                    right : 0;
+                }
+
+                img {
+                    width : 210px;
+                }
+            }
+        }
+    }
+}

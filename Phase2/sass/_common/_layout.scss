@@ -1,0 +1,79 @@
+.l-load {
+    top      : 0;
+    right    : 0;
+    left     : 0;
+    position : fixed;
+    z-index  : 15;
+    @include transition(opacity $transition-times);
+    @include background-image(linear-gradient($major-color 0% , darken($major-color , 15%) 95%));
+}
+
+.l-header {
+    top        : 0;
+    left       : 0;
+    width      : 100%;
+    position   : fixed;
+    z-index    : 11;
+}
+
+.l-content {
+    position   : relative;
+    @include box-sizing(border-box);
+
+    &.is-blur {
+        > * {
+            @include filter(blur(3px));
+            @include transition((filter $transition-times , opacity $transition-times));
+
+            &.is-default {
+                @include filter(blur(0));
+            }
+        }
+
+        &:before {
+            content  : "";
+            top      : 0;
+            left     : 0;
+            width    : 100%;
+            height   : 100%;
+            position : absolute;
+            z-index  : 3;
+            @include background-image(linear-gradient(rgba($major-color , .8) 0% , darken(rgba($major-color , .8) , 15%) 95%));
+        }
+    }
+}
+
+.l-footer {
+    bottom   : 0;
+    left     : 0;
+    width    : 100%;
+    position : fixed;
+    z-index  : 12;
+    @include transition(filter $transition-times);
+
+    &.is-blur {
+        /*@include filter(blur(3px));*/
+    }
+}
+
+@include respond-to(Desktops) {
+    .l-load {
+        bottom : 80px;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .l-load {
+        bottom : 60px;
+    }
+}
+
+@include respond-to(Mobiles) {
+    .l-load {
+        bottom : 45px;
+    }
+}

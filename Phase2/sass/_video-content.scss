@@ -1,0 +1,38 @@
+html , body {
+    height : auto !important;
+}
+
+body {
+    padding : 0;
+}
+
+@include respond-to(Desktops) {}
+
+@include respond-to(Desktops-Tablets) {
+	html , body {
+        overflow : hidden;
+    }
+
+    .l-content {
+        overflow : hidden;
+    }
+
+    .video-bd {
+        height : 530px;
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+	html , body {
+        max-height : 100% !important;
+        overflow   : auto !important;
+    }
+
+    .video-bd {
+        background : #000;
+    }
+}

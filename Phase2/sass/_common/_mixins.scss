@@ -1,0 +1,236 @@
+﻿/* background-vertical-gradient */
+@mixin background-vertical-gradient($startColor , $startPosition , $endColor , $endPosition) {
+	background : $endColor; /* Old browsers */
+	background : -moz-linear-gradient(top, $startColor $startPosition, $endColor $endPosition); /* FF3.6+ */
+	background : -webkit-gradient(linear, left top, left bottom, color-stop($startPosition, $startColor), color-stop($endPosition, $endColor)); /* Chrome,Safari4+ */
+	background : -webkit-linear-gradient(top, $startColor $startPosition, $endColor $endPosition); /* Chrome10+,Safari5.1+ */
+	background : -o-linear-gradient(top, $startColor $startPosition, $endColor $endPosition); /* Opera 11.10+ */
+	background : -ms-linear-gradient(top, $startColor $startPosition, $endColor $endPosition); /* IE10+ */
+	background : linear-gradient(to bottom, $startColor $startPosition, $endColor $endPosition); /* W3C */
+	filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#{darken($startColor , 0.15%)}' , endColorstr='#{darken($endColor , 0.15%)}',GradientType=0);
+}
+
+/* background-horizontal-gradient */
+@mixin background-horizontal-gradient($startColor , $startPosition , $endColor , $endPosition) {
+	background : $endColor; /* Old browsers */
+	background : -moz-linear-gradient(left, $startColor $startPosition, $endColor $endPosition); /* FF3.6+ */
+	background : -webkit-gradient(linear, left top, right top, color-stop($startPosition, $startColor), color-stop($endPosition, $endColor)); /* Chrome,Safari4+ */
+	background : -webkit-linear-gradient(left, $startColor $startPosition, $endColor $endPosition); /* Chrome10+,Safari5.1+ */
+	background : -o-linear-gradient(left, $startColor $startPosition, $endColor $endPosition); /* Opera 11.10+ */
+	background : -ms-linear-gradient(left, $startColor $startPosition, $endColor $endPosition); /* IE10+ */
+	background : linear-gradient(to right, $startColor $startPosition, $endColor $endPosition); /* W3C */
+	filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#{darken($startColor , 0.15%)}' , endColorstr='#{darken($endColor , 0.15%)}',GradientType=1);
+}
+
+/* transition */
+@mixin transition($transition , $delay : 0) {
+	-webkit-transition                 : $transition;
+	-moz-transition                    : $transition;
+	-ms-transition                     : $transition;
+	-o-transition                      : $transition;
+	transition                         : $transition;
+	-webkit-transition-delay           : $delay;
+	-moz-transition-delay              : $delay;
+	-ms-transition-delay               : $delay;
+	-o-transition-delay                : $delay;
+	transition-delay                   : $delay;
+	-webkit-transition-timing-function : ease;
+	-moz-transition-timing-function    : ease;
+	-ms-transition-timing-function     : ease;
+	-o-transition-timing-function      : ease;
+	transition-timing-function         : ease;
+}
+
+@mixin transition-none {
+	-webkit-transition : none !important;
+	-moz-transition    : none !important;
+	-ms-transition     : none !important;
+	-o-transition      : all 0 ease-in !important;
+	transition         : none !important;
+}
+
+/* fixed */
+@mixin fixed {
+	position                   : fixed;
+	-webkit-overflow-scrolling : touch;
+}
+
+@mixin cursor( $cursor : null ) {
+	@if $cursor == grab {
+		cursor : -webkit-grab;
+		cursor : -moz-grab;
+		cursor : -ms-grab;
+		cursor : -o-grab;
+		cursor : grab;
+	} @else if $cursor == grabbing {
+		cursor : -webkit-grabbing;
+		cursor : -moz-grabbing;
+		cursor : -ms-grabbing;
+		cursor : -o-grabbing;
+		cursor : grabbing;
+	} @else {
+		cursor : $cursor;
+	}
+}
+
+/* placeholder text */
+@mixin placeholder( $color : $placeholder-color ) {
+	&::-moz-placeholder {
+		color   : $color;
+		opacity : 1;
+	}
+
+	&:-ms-input-placeholder {
+		color : $color;
+	}
+
+	&::-webkit-input-placeholder { 
+		color : $color;
+	}
+}
+
+@mixin autofill( $background-color : #FFF !important , $color : #CCC !important ) {
+	&::-moz-autofill {
+		color            : $color;
+		background-color : $background-color;
+	}
+
+	&:-ms-autofill {
+		color            : $color;
+		background-color : $background-color;
+	}
+
+	&:-webkit-autofill , &:-webkit-autofill:hover , &:-webkit-autofill:focus { 
+		color            : $color;
+		background-color : $background-color;
+	}
+}
+
+/* text-size-adjust */
+@mixin text-size-adjust {
+	-webkit-text-size-adjust : none;
+	-moz-text-size-adjust    : none;
+	-o-text-size-adjust      : none;
+	-ms-text-size-adjust     : none;
+	text-size-adjust         : none;
+}
+
+/* display */
+@mixin display($type , $vertical : middle , $important : null ) {
+	@if $important == true { 
+		display : $type !important;
+	} @else {
+		display : $type;
+	}
+	
+	@if $type != block {
+		vertical-align : $vertical;
+		
+		@if $type == table-cell {
+			float : none !important;
+		} @else if $type == table {
+			table-layout : auto;
+			word-wrap    : break-word;
+			word-break   : break-all;
+		}
+	}
+}
+
+@mixin font-min-size( $size ) {
+	font-size         : #{$size}px;
+	-webkit-transform :scale(($size / 12));
+}
+
+/* touch-action */
+@mixin touch-action {
+	-ms-touch-action    : manipulation;
+	touch-action        : manipulation;
+	-webkit-user-select : none;
+	-moz-user-select    : none;
+	-ms-user-select     : none;
+	user-select         : none;
+}
+
+/* appearance  */
+@mixin appearance( $type : menulist ) {
+	-webkit-appearance : $type;
+	-moz-appearance    : $type;
+	-ms-appearance     : $type;
+	-o-appearance      : $type;
+	appearance         : $type;
+}
+
+
+/* disabled */
+@mixin disabled {
+	color        : $color-disabled;
+	border-color : lighten($color-disabled , 20%);
+	cursor       : not-allowed;
+	@include text-shadow($color-white 1px 1px 0);
+}
+
+/* button default */
+@mixin button-default {
+	margin         : 0;
+	padding        : 0;
+	font-size      : inherit;
+	border         : 0;
+	border-spacing : 0;
+	line-height    : 1.4;
+	position       : relative;
+	background     : none;
+	outline        : 0;
+	cursor         : pointer;
+	text-indent    : 0;
+	z-index        : 1;
+	text-rendering : auto;
+	text-transform : none;
+	speak          : none;
+	display        : inline-block;
+	@include transform(translate(0, 0));
+	@include touch-action;
+
+	@at-root {
+		button {
+			font-family : $font-family;
+		}
+	}
+
+	> i {
+		line-height : 1;
+	}
+}
+
+/* browsers */
+@mixin browsers($browsers) {
+	@if $browsers == 'IE8' {
+		.IE8 { @content; }
+	} @else if $browsers == 'IE8&IE9' {
+		.IE8 , .IE9 { @content; }
+	} @else if $browsers == 'IE' {
+		@media screen\0 { @content; }
+	} @else if $browsers == 'FireFox' {
+		@-moz-document url-prefix() { @content; }
+	} @else if $browsers == 'Chrome' {
+		@media screen and ( -webkit-min-device-pixel-ratio : 0 ) { @content; }
+	}
+}
+
+/* RWD */
+@mixin respond-to( $midia ) {
+	@if $midia == Desktops {
+		@media \0screen { @content; }
+		@media screen and ( min-width : $screen-pc ) { @content; }
+	} @else if $midia == Desktops-Tablets {
+		@media \0screen { @content; }
+		@media screen and ( min-width : $screen-device ) { @content; }
+	} @else if $midia == Tablets {
+		@media screen and ( max-width : ($screen-pc - 1) ) { @content; }
+	} @else if $midia == Tablets-Mobiles {
+		@media screen and ( min-width : $screen-device ) and ( max-width : ($screen-pc - 1) ) { @content; }
+	} @else if $midia == Mobiles {
+		@media screen and ( max-width : ($screen-device - 1) ) { @content; }
+	} @else {
+		@media screen and ( max-width : $midia ) { @content; }
+	}
+}

@@ -1,0 +1,67 @@
+﻿/* ==================== 基本設定 ==================== */
+$font-family      : 'GFModern' , Arial , 'source-han-sans-traditional' , '微軟正黑體' ,  'Heiti TC' , '黑體' , serif;
+$form-family      : Arial , 'source-han-sans-traditional' , '微軟正黑體' ,  'Heiti TC' , '黑體' , serif;
+$font-blod-family : 'GFModernBold' , Arial , 'source-han-sans-traditional' , '微軟正黑體' , 'Heiti TC' , '黑體' , serif;
+
+$main-min-width : 1000px;
+
+/* PC screen */
+$screen-pc : ($main-min-width - 1);
+/* Device screen */
+$screen-device : 740px;
+
+/* ==================== 顏色設定 ==================== */
+/* 企業識別主色 */
+$major-color : #483a39;
+
+/* 企業識別次色 */
+$minor-color : #A74;
+
+/* 企業識別輔助色 */
+$sub-color : #FC7;
+
+/* 文字主要顏色 */
+$text-major-color : #B74;
+
+/* 文字子顏色 */
+$text-minor-color : #535353;
+
+/* 文字說明顏色 */
+$text-sub-color : #727272;
+
+/* 主要邊框顏色 */
+$border-major-color : #d8d8d8;
+
+/* 次要邊框顏色 */
+$border-minor-color : #211;
+
+/* placeholder color */
+$placeholder-color : rgba(#300 , .6);
+
+/* form checkbox & radio color */
+$form-box-color : #420;
+
+$color-white    : #FFF;
+$color-black    : #000;
+$color-coffee   : $sub-color;
+$color-facebook : #359;
+$color-dot      : #FC9;
+$color-primary  : #F00;
+
+
+/* 自訂顏色 */
+$color : (
+    'white'    : $color-white,
+    'black'    : $color-black,
+    'coffee'   : $color-coffee,
+    'facebook' : $color-facebook,
+    'dot'      : $color-dot,
+    'primary'  : $color-primary
+);
+
+/* ==================== 動態時間設定 ==================== */
+$transition-times : .3s;
+
+/* ==================== 物件圓角設定 ==================== */
+/* Module 圓角 */
+$module-border-radius : 10px;

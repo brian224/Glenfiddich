@@ -1,0 +1,69 @@
+html , body {
+    font       : 13px/1.6 $font-family;
+    background : $color-white;
+    @include box-sizing(border-box);
+}
+
+b , strong {
+    font-weight : bold;
+}
+
+img {
+    vertical-align : middle;
+}
+
+a , button {
+    text-decoration : none;
+    @include button-default;
+    @include box-sizing(border-box);
+}
+
+a {
+    &[href^="tel"] {
+        color : inherit;
+    }
+}
+
+@include respond-to(Desktops) {
+    html , body {
+        min-width  : $main-min-width;
+    }
+
+    body {
+        padding-top    : 75px;
+        padding-bottom : 80px;
+    }
+
+    a {
+        &[href^="tel"] {
+            cursor : text;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    html , body {
+        height   : 100%;
+        @include clearfix;
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    body {
+        padding-top    : 60px;
+        padding-bottom : 60px;
+    }
+}
+
+@include respond-to(Mobiles) {
+    html , body {
+        position : relative;
+    }
+
+    body {
+        padding-top    : 45px;
+        padding-bottom : 45px;
+    }
+}

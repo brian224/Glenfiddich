@@ -1,0 +1,409 @@
+﻿.l-content {
+    height   : 100%;
+    overflow : hidden;
+    z-index  : 0;
+}
+
+.product-bd {
+    .list {
+        @include rotate3d(0, 0, 0, 0deg);
+    }
+}
+
+.product-item-data {
+    background : rgba(255, 255, 255, 0.85);
+    color      : $minor-color;
+    width      : 100%;
+    z-index    : 2;
+
+    > h2 {
+        font-family : $font-blod-family;
+        font-weight : bold;
+        color       : $text-major-color;
+        line-height : 1.2;
+        position    : relative;
+
+        > i {
+            left     : 0;
+            position : absolute;
+        }
+
+        > em {
+            @include display(block);
+
+            b {
+                display     : block;
+                font-size   : 0;
+                line-height : 0;
+                text-indent : -200%;
+            }
+        }
+
+        .glenfiddich {
+            width     : 80px;
+            overflow  : hidden;
+            color     : #483938;
+            font-size : 20px;
+        }
+
+        .wisky {
+            width     : 200px;
+            overflow  : hidden;
+            color     : #B6784D;
+            font-size : 25px;
+
+            i {
+                margin-left : -133px;
+            }
+        }
+    }
+}
+
+.limited-link {
+    width    : 108px;
+    height   : 103px;
+    position : absolute;
+    z-index  : 0;
+
+    &:before {
+        content    : '';
+        margin     : -38px 0 0 -37px;
+        display    : block;
+        width      : 72px;
+        height     : 72px;
+        position   : absolute;
+        top        : 50%;
+        left       : 50%;
+        box-shadow : 0 0 10px rgba(160, 10, 10, 0.5);
+        z-index    : -1;
+        @include rotate(45deg);
+    }
+
+    &:after {
+        content         : '';
+        background      : image-url('product/shine.png') no-repeat 0 0;
+        background-size : 2700px;
+        display         : block;
+        width           : 108px;
+        height          : 108px;
+        position        : absolute;
+        top             : -3px;
+        left            : 0;
+        @include animation(light 1.5s steps(24) infinite);
+    }
+
+    img {
+        width : 100%;
+    }
+}
+
+
+@include keyframes(light) {
+    0%  { background-position : 0; }
+    100% { background-position : -5184px; }
+}
+
+@include respond-to(Desktops) {}
+
+@include respond-to(Desktops-Tablets) {
+    .l-content {
+        background : $major-color;
+        overflow   : hidden;
+    }
+
+    .product-bd .list {
+        width    : 100%;
+        height   : 100%;
+        position : absolute;
+        opacity  : 1;
+        z-index  : 0;
+        @include transition(all 1s);
+
+        &:first-child {
+            background : #fff7f6;
+            @include background-image(linear-gradient(to right, #fff7f6 60%, #130704 90%));
+
+            .item-figure {
+                margin : -474px 0 0 -474px;
+            }
+        }
+
+        &:nth-child(2) {
+            background : #2d0801;
+
+            .item-figure {
+                margin : -383px 0 0 -194px;
+            }
+        }
+
+        &:nth-child(3) {
+            @include background-image(linear-gradient(to right, #fff8f3 50%, #ededed 80%));
+
+            .item-figure {
+                margin : -232px 0 0 10px;
+            }
+        }
+
+        &:nth-child(4) {
+            @include background-image(linear-gradient(to right, #fff8f3 50%, #ededed 80%));
+
+            .item-figure {
+                margin : -240px 0 0 -50px;
+            }
+        }
+
+        &.b-hide-md {
+            display : block !important;
+            z-index : -1;
+            opacity : 0;
+        }
+
+        .item-figure {
+            position : absolute;
+            top      : 50%;
+            left     : 50%;
+        }
+    }
+
+    .product-item-data {
+        margin     : -194px -45px 0 0;
+        padding    : 15px 30px 0 20px;
+        width      : 426px;
+        height     : 388px;
+        position   : absolute;
+        top        : 50%;
+        right      : 50%;
+        font-size  : 15px;
+        text-align : left;
+        @include box-sizing(border-box);
+
+        > h2 {
+            margin-bottom  : 15px;
+            padding-bottom : 10px;
+            padding-left   : 90px;
+            font-size      : 25px;
+            border-bottom  : 1px solid $text-major-color;
+
+            > i {
+                top       : -12px;
+                font-size : 70px;
+            }
+        }
+
+        .product-item-content {
+            margin-bottom : 40px;
+            color         : #4a3a3a;
+            font-size     : 15px;
+            font-weight   : bold;
+        }
+
+        .product-item-desc {
+            color       : #4a3a3a;
+            font-size   : 15px;
+            line-height : 26px;
+        }
+    }
+
+    .limited-link {
+        top   : 52px;
+        right : 24px;
+    }
+
+    .product-menu {
+        margin   : 150px -29px 0 0;
+        position : absolute;
+        top      : 50%;
+        right    : 50%;
+        z-index  : 3;
+
+        > ul {
+            > li {
+                margin-left : 10px;
+                float       : left;
+
+                &:first-child {
+                    margin-left : 0;
+                }
+            }
+        }
+    }
+
+    .product-button {
+        padding     : 3px 0;
+        background  : #f5f2f0;
+        width       : 90px;
+        border      : 1px solid #544746;
+        font-family : $font-blod-family;
+        font-size   : 12px;
+        @include transition(background $transition-times);
+
+        &:hover {
+            background : rgba($minor-color , .5);
+        }
+
+        &.is-curr {
+            background : $minor-color;
+            border     : 1px solid $minor-color;
+            color      : $color-white;
+        }
+    }
+
+    .product-menu-arrow {
+        top          : -8px;
+        width        : 0;
+        height       : 0;
+        border-style : solid;
+        border-width : 0 6px 8px 6px;
+        border-color : transparent transparent $minor-color transparent;
+        position     : absolute;
+        @include transition(left $transition-times);
+
+        &.is-curr-01 {
+            left : 39px;
+        }
+
+        &.is-curr-02 {
+            left : 138px;
+        }
+
+        &.is-curr-03 {
+            left : 238px;
+        }
+
+        &.is-curr-04 {
+            left : 338px;
+        }
+    }
+}
+
+@include respond-to(Tablets) {
+    .product-item-data {
+        margin-right : -75px;
+    }
+
+    .product-menu {
+        margin-right : -59px;
+    }
+}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+    .l-content {
+        min-height : 0;
+        overflow   : initial;
+    }
+
+    .product-bd .list {
+        &:first-child {
+            .item-figure img {
+                margin : -241px 0 0 -336px;
+                width  : 672px;
+            }
+        }
+
+        &:nth-child(2) {
+            background : #2d0801;
+
+            .item-figure img {
+                margin : -191px 0 0 -197px;
+                width  : 394px;
+            }
+        }
+
+        &:nth-child(3) {
+            background : #fff8f3;
+
+            .item-figure img {
+                margin : -118px 0 0 -100px;
+                width  : 222px;
+            }
+        }
+
+        &:nth-child(4) {
+            background : #fff8f3;
+
+            .item-figure img {
+                margin : -125px 0 0 -132px;
+                width  : 242px;
+            }
+        }
+
+        .item-figure {
+            width    : 100%;
+            height   : 300px;
+            position : relative;
+            overflow : hidden;
+
+            img {
+                position : absolute;
+                top      : 50%;
+                left     : 50%;
+            }
+        }
+    }
+
+    .product-item-data {
+        padding    : 30px 15px;
+        background : #fff;
+        display    : block;
+        position   : relative;
+        text-align : center;
+        @include box-sizing(border-box);
+
+        > h2 {
+            padding-left : 65px;
+            font-size    : 18px;
+            text-align   : left;
+            @include inline-block;
+
+            > i {
+                top       : -12px;
+                font-size : 60px;
+            }
+
+            .glenfiddich {
+                width       : 64px;
+                font-size   : 16px;
+                line-height : 16px;
+            }
+
+            .wisky {
+                width         : 160px;
+                border-bottom : 1px solid $text-major-color;
+                font-size     : 20px;
+                line-height   : 26px;
+
+                i {
+                    margin-left : -106px;
+                }
+            }
+        }
+
+        .product-item-content {
+            margin      : 12px auto;
+            color       : #4a3a3a;
+            font-size   : 15px;
+            font-weight : bold;
+        }
+    }
+
+    .limited-link {
+        top   : -54px;
+        right : 15px;
+    }
+
+    .product-menu {
+        display : none;
+    }
+}
+
+@include browsers('IE') {
+    .product-bd .list {
+        @include transition(opacity 1s);
+    }
+
+    .limited-link:before {
+        margin-top : -36px;
+    }
+}

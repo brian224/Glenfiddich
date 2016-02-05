@@ -1,0 +1,72 @@
+﻿.sugarfunbox-loading-bd-img {
+    height : 100% !important;
+}
+
+.sugarfunbox-hd {
+    z-index : 1;
+}
+
+.sugarfunbox-bd {
+    z-index : 0;
+}
+
+.sugarfunbox-close {
+    &:before, &:after {
+        content  : '';
+        width    : 1px;
+        position : absolute;
+        top      : 50%;
+        left     : 50%;
+        @include rotate(45deg);
+    }
+
+    &:after {
+        @include rotate(-45deg);
+    }
+}
+
+@include respond-to(Desktops) {
+    .sugarfunbox-close {
+        width   : 50px;
+        height  : 50px;
+        top     : 0;
+        right   : -65px;
+        z-index : 1;
+
+        &:before, &:after {
+            margin     : -36px 0 0 0;
+            background : $color-white;
+            height     : 72px;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .sugarfunbox-close {
+        display  : block;
+        position : absolute;
+        z-index  : 1;
+    }
+}
+
+@include respond-to(Tablets) {
+    .sugarfunbox-close {
+        width  : 44px;
+        height : 44px;
+
+        &:before, &:after {
+            margin     : -21px 0 0 0;
+            background : #a67e2a;
+            height     : 42px;
+        }
+    }
+}
+
+@include respond-to(Tablets-Mobiles) {
+    .sugarfunbox-close {
+        top    : -50px;
+        right  : 0;
+    }
+}
+
+@include respond-to(Mobiles) {}

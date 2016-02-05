@@ -1,0 +1,82 @@
+.m-floating {
+    top      : 50%;
+    left     : 0;
+    position : fixed;
+    z-index  : 5;
+}
+
+@include respond-to(Desktops) {
+    .m-floating {
+        margin-top : -47px;
+    }
+
+    .m-floating-media {
+        width  : 94px;
+        height : 94px;
+        cursor : pointer;
+
+        &:after {
+            border-top    : 47px solid transparent;
+            border-bottom : 47px solid transparent;
+            border-left   : 94px solid $text-major-color;
+        }
+
+        > em {
+            font-size : 13px;
+        }
+    }
+}
+
+@include respond-to(Desktops-Tablets) {
+    .m-floating-media {
+        color       : $color-white;
+        line-height : 18px;
+        position    : relative;
+        text-shadow : 0 0 5px #704121;
+        @include box-sizing(border-box);
+
+        &:after {
+            content       : '';
+            top           : 0;
+            left          : 0;
+            position      : absolute;
+            z-index       : -1;
+        }
+
+        > em {
+            .b-mark {
+                color     : #FE5;
+                @include display(block);
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {
+    .m-floating {
+        margin-top : -40px;
+    }
+
+    .m-floating-media {
+        width  : 80px;
+        height : 80px;
+
+        &:after {
+            border-top    : 40px solid transparent;
+            border-bottom : 40px solid transparent;
+            border-left   : 80px solid $text-major-color;
+        }
+
+        > em {
+            font-size : 13px;
+        }
+    }
+}
+
+@include respond-to(Mobiles) {
+    .m-floating {
+        display : none;
+    }
+}

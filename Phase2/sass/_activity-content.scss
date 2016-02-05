@@ -1,0 +1,193 @@
+﻿html , body {
+    height : auto !important;
+}
+
+body {
+    padding    : 0;
+    background : #fff0e3;
+    border     : 3px solid $minor-color;
+}
+
+.activity-hd {
+    text-align : center;
+
+    .main-title {
+        padding     : 20px 0;
+        color       : $major-color;
+        font-size   : 0;
+        line-height : 30px;
+
+        i {
+            font-size : 30px;
+        }
+    }
+}
+
+.activity-bd {
+    .term-list {
+        font-size : 15px;
+
+        .list {
+            margin-top : 30px;
+        }
+
+        .list-title {
+            margin-bottom : 10px;
+            border-bottom : 1px solid #bb7a4e;
+            color         : #bb7a4e;
+            font-weight   : bold;
+            line-height   : 24px;
+        }
+
+        p, ol li {
+            color       : #4a3a3a;
+            line-height : 22px;
+        }
+
+        .notice {
+            display : block;
+            color   : #949494;
+        }
+
+        ol {
+            padding-left : 30px;
+
+            li {
+                list-style : decimal outside;
+            }
+        }
+    }
+}
+
+.ps-container {
+    > .ps-scrollbar-y-rail {
+        opacity : 0.6;
+
+        &:before {
+            content     : '';
+            margin-left : -2px;
+            background  : #000;
+            display     : block;
+            width       : 1px;
+            height      : 100%;
+            position    : absolute;
+            top         : 0;
+            left        : 50%;
+        }
+
+        &:hover {
+            background : transparent;
+            
+            > .ps-scrollbar-y {
+                background : #961e23;
+            }
+        }
+
+        > .ps-scrollbar-y {
+            background    : #bb7a4e;
+            width         : 11px;
+            border        : 1px solid #000;
+            border-radius : 0;
+            cursor        : pointer;
+            @include box-sizing(border-box);
+        }
+    }
+
+    &:hover > .ps-scrollbar-y-rail:hover {
+        background : transparent;
+        
+        > .ps-scrollbar-y {
+            background : #961e23;
+        }
+    }
+
+    &.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y, &:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail>.ps-scrollbar-y {
+        background : #961e23;
+    }
+
+    &.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail, &:hover>.ps-scrollbar-y-rail:hover, &:hover.ps-in-scrolling.ps-y>.ps-scrollbar-y-rail {
+        background : transparent;
+    }
+}
+
+@include respond-to(Desktops) {}
+
+@include respond-to(Desktops-Tablets) {
+    html , body {
+        overflow : hidden;
+    }
+
+    .l-content {
+        padding    : 0 32px 28px 32px;
+        background : image-url('activity/bg.jpg') no-repeat center center;
+        overflow   : hidden;
+    }
+
+    .activity-bd {
+        height : 360px;
+
+        .box-area {
+            padding-right : 20px;
+            height        : 100%;
+            position      : relative;
+            @include box-sizing(border-box);
+        }
+
+        .term-list {
+            position : relative;
+            overflow : hidden;
+
+            .list-title {
+                display : inline-block;
+            }
+
+            .shift-right {
+                margin-left : 300px;
+            }
+
+            .gift-img {
+                margin   : 0;
+                position : absolute;
+                top      : 0;
+                left     : 0;
+                z-index  : 0;
+            }
+
+            .list {
+                position : relative;
+                z-index  : 1;
+            }
+        }
+    }
+}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {
+    html , body {
+        max-height : 100% !important;
+        overflow   : auto !important;
+    }
+
+    .l-content {
+        padding : 0 15px 15px 15px;
+    }
+
+    .activity-bd .term-list {
+        .list:first-child {
+            margin-top : 0;
+        }
+
+        .gift-img {
+            margin   : 30px auto 0 auto;
+            width    : 124px;
+            overflow : hidden;
+
+            img {
+                width : 184px;
+            }
+        }
+    }
+}

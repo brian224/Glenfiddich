@@ -1,0 +1,13 @@
+@include respond-to(Desktops) {
+    html , body {
+        min-width : auto;
+    }
+}
+
+@include respond-to(Desktops-Tablets) {}
+
+@include respond-to(Tablets) {}
+
+@include respond-to(Tablets-Mobiles) {}
+
+@include respond-to(Mobiles) {}
