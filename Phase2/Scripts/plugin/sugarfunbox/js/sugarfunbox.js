@@ -9,11 +9,12 @@
 (function (window , document , jQuery , undefined) {
 	'use strict';
 
-	var H = $('html'),
-		B = $('body'),
-		W = $(window),
-		D = $(document),
-		S = $.SugarFunBox = function () {
+	var H  = $('html'),
+		B  = $('body'),
+		HB = $('html , body'),
+		W  = $(window),
+		D  = $(document),
+		S  = $.SugarFunBox = function () {
 			S.open.apply( this , arguments );
 		},
 		IE =  navigator.userAgent.match(/msie/i),
@@ -369,8 +370,8 @@
 					e.preventDefault();
 					e.stopPropagation();
 					H.add(D).scrollTop(scrollTop);
-					$('html , body').animate({'scrollTop' : scrollTop} , '1');
-					$('html , body').stop(true , true);
+					HB.animate({'scrollTop' : scrollTop} , '1');
+					HB.stop(true , true);
 				});
 
 				S.wrap.add('.sugarfunbox-overlay').bind('mousewheel DOMMouseScroll', function (e , delta , deltaX , deltaY) {
@@ -383,7 +384,9 @@
 
 					while ( parent.length ) {
 						if ( ( canScroll || parent.is('.sugarfunbox *') ) ) {
-							S.wrap.unbind('mousewheel DOMMouseScroll');
+							if ( S.wrap !== null ) {
+								S.wrap.unbind('mousewheel DOMMouseScroll');
+							}
 							break;
 						}
 

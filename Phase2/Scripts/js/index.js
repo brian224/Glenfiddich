@@ -225,73 +225,72 @@
                         Receive    : ''
                     };
 
-                if ( $this.Token.Value !== '' && $this.Token.Value.length === 20 && $this.Token.Check ) {
+                // if ( $this.Token.Value !== '' && $this.Token.Value.length === 20 && $this.Token.Check ) {
 
-                    if ( $nameElem.val() !== '' && $chinese.test($nameElem.val()) ) {
-                        $nameElem.parent().removeClass('is-error');
-                        $data.Name = $nameElem.val();
-                    } else {
-                        $nameElem.parent().addClass('is-error');
-                        $error += $nameElem.data('error') + '\n';
-                        console.log($nameElem);
-                    }
+                if ( $nameElem.val() !== '' && $chinese.test($nameElem.val()) ) {
+                    $nameElem.parent().removeClass('is-error');
+                    $data.Name = $nameElem.val();
+                } else {
+                    $nameElem.parent().addClass('is-error');
+                    $error += $nameElem.data('error') + '\n';
+                }
 
-                    if ( $phoneElem.val() !== '' && $phoneElem.val().length >= 9 && $number.test($phoneElem.val()) ) {
-                        $phoneElem.parent().removeClass('is-error');
-                        $data.Phone = $phoneElem.val();
-                    } else {
-                        $phoneElem.parent().addClass('is-error');
-                        $error += $phoneElem.data('error') + '\n';
-                    }
+                if ( $phoneElem.val() !== '' && $phoneElem.val().length >= 9 && $number.test($phoneElem.val()) ) {
+                    $phoneElem.parent().removeClass('is-error');
+                    $data.Phone = $phoneElem.val();
+                } else {
+                    $phoneElem.parent().addClass('is-error');
+                    $error += $phoneElem.data('error') + '\n';
+                }
 
-                    if ( $emailElem.val() !== '' && $email.test($emailElem.val()) ) {
-                        $emailElem.parent().removeClass('is-error');
-                        $data.Email = $emailElem.val();
+                if ( $emailElem.val() !== '' && $email.test($emailElem.val()) ) {
+                    $emailElem.parent().removeClass('is-error');
+                    $data.Email = $emailElem.val();
+                } else {
+                    $emailElem.parent().addClass('is-error');
+                    $error += $emailElem.data('error');
+                }
+
+                if ( $type === 'win' ) {
+                    if ( $receiveElem.val() ) {
+                        jQuery('input[name="Receive"]').parents('.index-result-label').removeClass('is-error');
+                        $data.Receive = $receiveElem.val();
                     } else {
-                        $emailElem.parent().addClass('is-error');
-                        $error += $emailElem.data('error');
+                        jQuery('input[name="Receive"]').parents('.index-result-label').addClass('is-error');
+                        $error += '\n' + jQuery('input[name="Receive"]').parents('.index-result-label').data('error');
                     }
+                }
+
+                // success
+                if ( jQuery(Element).prev('.index-result-form').find('.is-error').length === 0 ) {
+                    var $api = null;
+                    var $title = '',
+                        $description = '1963年，格蘭家族以夢想裝箱 起身挑戰世界；2016年，由你解密開箱！帶走襲捲世界的夢想威士忌！',
+                        $picture = 'share.jpg';
 
                     if ( $type === 'win' ) {
-                        if ( $receiveElem.val() ) {
-                            jQuery('input[name="Receive"]').parents('.index-result-label').removeClass('is-error');
-                            $data.Receive = $receiveElem.val();
-                        } else {
-                            jQuery('input[name="Receive"]').parents('.index-result-label').addClass('is-error');
-                            $error += '\n' + jQuery('input[name="Receive"]').parents('.index-result-label').data('error');
-                        }
-                    }
-
-                    // success
-                    if ( jQuery(Element).prev('.index-result-form').find('.is-error').length === 0 ) {
-                        var $api = null;
-                        var $title = '',
-                            $description = '1963年，格蘭家族以夢想裝箱 起身挑戰世界；2016年，由你解密開箱！帶走襲捲世界的夢想威士忌！',
-                            $picture = 'share.jpg';
-
-                        if ( $type === 'win' ) {
-                            $api   = '/api/winner/';
-                            $title = '猴賽雷！一開年就帶走經典15年，和我一起好運吧！';
-                        } else {
-                            $api = '/api/share/';
-                            $title = '吼~我需要好運！和我一起解密開箱拿格蘭菲迪15年！';
-                        }
-
-                        jQuery.post($api , $data , function (result) {
-                        } , 'json').then(function (result) {
-                            jQuery('.jQ-result-check').addClass(jQuery('.jQ-result-check').data('end')).removeClass(jQuery('.jQ-result-check').data('form'));
-                            if ( Projects.Factory.UserAgent === 'PC' ) {
-                                Projects.Factory.FB.Feed($title , $description , $picture);
-                            } else {
-                                Projects.Factory.FB.Share();
-                            }
-                        });
+                        $api   = '/api/winner/';
+                        $title = '猴賽雷！一開年就帶走經典15年，和我一起好運吧！';
                     } else {
-                        alert($error);
+                        $api = '/api/share/';
+                        $title = '吼~我需要好運！和我一起解密開箱拿格蘭菲迪15年！';
                     }
+
+                    jQuery.post($api , $data , function (result) {
+                    } , 'json').then(function (result) {
+                        if ( result === 1 ) {
+                            alert(jQuery('.jQ-result').data('error'));
+                        } else {
+                            jQuery('.jQ-result-check').addClass(jQuery('.jQ-result-check').data('end')).removeClass(jQuery('.jQ-result-check').data('form'));
+                            Projects.Factory.FB.Feed($title , $description , $picture);
+                        }
+                    });
                 } else {
-                    alert(jQuery('.jQ-result').data('error'));
+                    alert($error);
                 }
+                // } else {
+                //     alert(jQuery('.jQ-result').data('error'));
+                // }
             }
         },
         ImgLoaded = function() {

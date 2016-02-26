@@ -177,6 +177,10 @@
                         jQuery('.l-content').removeClass(jQuery('.l-content').data('blur'));
                         jQuery('.l-footer').removeClass(jQuery('.l-footer').data('blur'));
                         Projects.Factory.Year.addClass(Projects.Factory.Year.data('hide')).removeClass(Projects.Factory.Year.data('cloak'));
+
+                        if ( Projects.Factory.IOSChrome() ) {
+                            alert('請使用 iOS Safari 開啟此活動網站，避免影響您的權益。');
+                        }
                     });
                 },
                 Not : function() {
@@ -203,7 +207,7 @@
                         if ( d.getElementById(id) ) {return;}
 
                         js     = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=962792660480600";
+                        js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=962792660480600?JS=20160119_01";
 
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
@@ -246,11 +250,11 @@
                     FB.ui({
                         method      : 'feed',
                         name        : Title,
-                        link        : jQuery('meta[property="og:url"]').attr('content'),
+                        link        : jQuery('meta[property="og:url"]').attr('content') + '?output=embed',
                         picture     : Projects.Factory.Locations +'/Content/img/common/'+ Picture +'',
                         caption     : '',
                         description : Description,
-                        display     : 'popup'
+                        display     : Projects.Factory.UserAgent === 'PC' ? 'iframe' : 'popup'
                     } , function(response) {
                         if ( response && ! response.error_code ) {
                         } else {

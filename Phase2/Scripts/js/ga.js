@@ -11,7 +11,7 @@ if ( document.getElementById('GAScript').dataset.id ) {
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a , m)
-    })(window , document , 'script' , '//www.google-analytics.com/analytics.js' , 'ga');
+    })(window , document , 'script' , '//www.google-analytics.com/analytics.js?JS=20160119_01' , 'ga');
 
     ga('create', document.getElementById('GAScript').dataset.id, 'auto');
     ga('require', 'displayfeatures');
